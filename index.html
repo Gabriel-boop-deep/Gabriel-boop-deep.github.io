@@ -129,6 +129,8 @@
             font-weight: 500;
             transition: all 0.3s;
             position: relative;
+            padding: 0.5rem 0;
+            overflow: hidden;
         }
 
         .nav-links a::after {
@@ -140,10 +142,65 @@
             height: 2px;
             background: var(--primary);
             transition: width 0.3s;
+            box-shadow: 0 0 10px var(--primary);
         }
 
         .nav-links a:hover::after {
             width: 100%;
+        }
+
+        /* Particles on hover */
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 20px;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover::before {
+            opacity: 1;
+            animation: particleRain 1s ease-out infinite;
+        }
+
+        @keyframes particleRain {
+            0% {
+                background-image: 
+                    radial-gradient(circle, var(--primary) 1px, transparent 1px),
+                    radial-gradient(circle, var(--primary) 1px, transparent 1px),
+                    radial-gradient(circle, var(--primary) 1px, transparent 1px),
+                    radial-gradient(circle, var(--primary) 1px, transparent 1px),
+                    radial-gradient(circle, var(--primary) 1px, transparent 1px);
+                background-size: 3px 3px;
+                background-position: 
+                    10% -20px,
+                    30% -20px,
+                    50% -20px,
+                    70% -20px,
+                    90% -20px;
+                background-repeat: no-repeat;
+            }
+            100% {
+                background-image: 
+                    radial-gradient(circle, var(--primary) 1px, transparent 1px),
+                    radial-gradient(circle, var(--primary) 1px, transparent 1px),
+                    radial-gradient(circle, var(--primary) 1px, transparent 1px),
+                    radial-gradient(circle, var(--primary) 1px, transparent 1px),
+                    radial-gradient(circle, var(--primary) 1px, transparent 1px);
+                background-size: 3px 3px;
+                background-position: 
+                    10% 25px,
+                    30% 25px,
+                    50% 25px,
+                    70% 25px,
+                    90% 25px;
+                background-repeat: no-repeat;
+                opacity: 0;
+            }
         }
 
         /* Hero Section */
