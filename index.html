@@ -3,454 +3,780 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerador DDS PowerPoint</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/PptxGenJS/3.12.0/pptxgen.bundle.min.js"></script>
+    <title>Gabriel Nunes - AI & Data Engineer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #00f5ff;
+            --secondary: #7b2ff7;
+            --accent: #ff006e;
+            --dark: #0a0e27;
+            --darker: #050810;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 50px auto;
-            padding: 20px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--darker);
+            color: #fff;
+            overflow-x: hidden;
+            line-height: 1.6;
         }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.4;
+        }
+
+        .gradient-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .orb1 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--primary), transparent);
+            top: -10%;
+            left: -10%;
+        }
+
+        .orb2 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--secondary), transparent);
+            bottom: -10%;
+            right: -10%;
+            animation-delay: 5s;
+        }
+
+        .orb3 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, var(--accent), transparent);
+            top: 40%;
+            right: 20%;
+            animation-delay: 10s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(50px, -50px) rotate(120deg); }
+            66% { transform: translate(-50px, 50px) rotate(240deg); }
+        }
+
+        .grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 245, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 245, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: 1;
+        }
+
+        /* Container */
         .container {
-            background: white;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            position: relative;
+            z-index: 10;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
         }
-        h1 {
-            color: #333;
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 0;
+            margin-bottom: 3rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-shadow: 0 0 20px var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-bottom: 8rem;
+            min-height: 80vh;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+        }
+
+        .hero-content .subtitle {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-item {
             text-align: center;
-            margin-bottom: 10px;
         }
-        .subtitle {
-            text-align: center;
-            color: #666;
-            margin-bottom: 30px;
-        }
-        .info-box {
-            background: #f0f4ff;
-            border-left: 4px solid #667eea;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 5px;
-        }
-        .info-box h3 {
-            margin-top: 0;
-            color: #667eea;
-        }
-        button {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            padding: 15px 40px;
-            font-size: 18px;
-            border-radius: 8px;
-            cursor: pointer;
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
             display: block;
-            margin: 30px auto;
-            transition: transform 0.2s, box-shadow 0.2s;
         }
-        button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
-        button:active {
-            transform: translateY(0);
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
         }
-        button:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            position: relative;
+            overflow: hidden;
         }
-        .status {
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #fff;
+            border: none;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 40px rgba(0, 245, 255, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            color: #fff;
+            border: 2px solid rgba(0, 245, 255, 0.3);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary);
+            background: rgba(0, 245, 255, 0.1);
+            transform: translateY(-3px);
+        }
+
+        /* Profile Image */
+        .hero-image {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .profile-frame {
+            position: relative;
+            width: 400px;
+            height: 400px;
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 20px;
+            border: 3px solid transparent;
+            background: linear-gradient(var(--darker), var(--darker)) padding-box,
+                        linear-gradient(135deg, var(--primary), var(--secondary)) border-box;
+            box-shadow: 0 20px 60px rgba(0, 245, 255, 0.3);
+        }
+
+        .frame-corner {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border: 3px solid var(--primary);
+        }
+
+        .corner-tl { top: -15px; left: -15px; border-right: none; border-bottom: none; }
+        .corner-tr { top: -15px; right: -15px; border-left: none; border-bottom: none; }
+        .corner-bl { bottom: -15px; left: -15px; border-right: none; border-top: none; }
+        .corner-br { bottom: -15px; right: -15px; border-left: none; border-top: none; }
+
+        /* Section Title */
+        .section-title {
             text-align: center;
-            margin-top: 20px;
-            font-weight: bold;
-            padding: 10px;
-            border-radius: 5px;
+            margin-bottom: 4rem;
         }
-        .status.success {
-            background: #d4edda;
-            color: #155724;
+
+        .section-title h2 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-        .status.error {
-            background: #f8d7da;
-            color: #721c24;
+
+        .section-title p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.1rem;
         }
-        .status.loading {
-            background: #fff3cd;
-            color: #856404;
+
+        /* Projects Grid */
+        .projects-section {
+            margin-bottom: 8rem;
         }
-        .checklist {
-            background: #fff3cd;
-            border-left: 4px solid #ffc107;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 5px;
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
         }
-        .checklist ul {
-            margin: 10px 0;
-            padding-left: 20px;
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 245, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            transition: left 0.5s;
+        }
+
+        .project-card:hover::before {
+            left: 100%;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(0, 245, 255, 0.4);
+            box-shadow: 0 20px 60px rgba(0, 245, 255, 0.2);
+        }
+
+        .project-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .project-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .project-card p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-tag {
+            padding: 0.4rem 1rem;
+            background: rgba(0, 245, 255, 0.1);
+            border: 1px solid rgba(0, 245, 255, 0.2);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--primary);
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .project-link:hover {
+            gap: 1rem;
+        }
+
+        /* Skills Section */
+        .skills-section {
+            margin-bottom: 8rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-card {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 245, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .skill-card:hover {
+            border-color: rgba(0, 245, 255, 0.4);
+            transform: translateY(-5px);
+        }
+
+        .skill-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .skill-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .skill-card p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            text-align: center;
+            padding: 6rem 2rem;
+            background: rgba(0, 245, 255, 0.02);
+            border-radius: 30px;
+            border: 1px solid rgba(0, 245, 255, 0.1);
+            margin-bottom: 4rem;
+        }
+
+        .contact-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .contact-section p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .social-btn {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(0, 245, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 1.5rem;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-btn:hover {
+            background: rgba(0, 245, 255, 0.1);
+            border-color: var(--primary);
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 10px 30px rgba(0, 245, 255, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: rgba(255, 255, 255, 0.5);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        @media (max-width: 968px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-image {
+                order: -1;
+            }
+
+            .profile-frame {
+                width: 300px;
+                height: 300px;
+            }
+
+            .hero-stats {
+                justify-content: center;
+            }
+
+            .cta-buttons {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .projects-grid, .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                align-items: center;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>🔥 DDS - Prevenção de Incêndios</h1>
-        <p class="subtitle">Áreas com Vapores Inflamáveis e Equipamentos Elétricos</p>
-        
-        <div class="info-box">
-            <h3>📋 Informações da Apresentação</h3>
-            <p><strong>Dupla:</strong> Gabriel Nunes e Gabriel Santos</p>
-            <p><strong>Disciplina:</strong> ENG295 – Higiene e Segurança do Trabalho</p>
-            <p><strong>Professor:</strong> Henrique Santos Junqueira</p>
-            <p><strong>Slides:</strong> 11 slides completos</p>
-        </div>
-
-        <div class="checklist">
-            <h3>✅ Checklist de Conformidade</h3>
-            <ul>
-                <li>✓ Números nos slides (canto inferior esquerdo)</li>
-                <li>✓ Nomes da dupla em todos os slides</li>
-                <li>✓ Referências em formato ABNT NBR 6023:2018</li>
-                <li>✓ Tempo estimado: ~13-15 minutos</li>
-                <li>✓ NRs aplicáveis: NR-10, NR-20, NR-23</li>
-                <li>✓ 4 perguntas para avaliação incluídas</li>
-            </ul>
-        </div>
-
-        <button id="generateBtn">
-            📥 Gerar Apresentação PowerPoint (.pptx)
-        </button>
-        
-        <div id="status"></div>
+    <div class="bg-animation">
+        <div class="gradient-orb orb1"></div>
+        <div class="gradient-orb orb2"></div>
+        <div class="gradient-orb orb3"></div>
     </div>
+    <div class="grid-overlay"></div>
 
-    <script>
-        document.getElementById('generateBtn').addEventListener('click', function() {
-            const statusDiv = document.getElementById('status');
-            const btn = document.getElementById('generateBtn');
+    <div class="container">
+        <!-- Navigation -->
+        <nav>
+            <div class="logo">&lt;GN/&gt;</div>
+            <ul class="nav-links">
+                <li><a href="#about">Sobre</a></li>
+                <li><a href="#projects">Projetos</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contato</a></li>
+            </ul>
+        </nav>
+
+        <!-- Hero Section -->
+        <section class="hero" id="about">
+            <div class="hero-content">
+                <h1>Gabriel Nunes</h1>
+                <p class="subtitle">AI Specialist & Data Engineer</p>
+                <p>
+                    Especializado em Inteligência Artificial, Machine Learning e Engenharia de Dados. 
+                    Experiência em construir pipelines de dados robustos, modelos de Deep Learning e 
+                    arquiteturas baseadas no Modern Data Stack. Apaixonado por transformar dados em 
+                    insights acionáveis e criar soluções que impactam negócios.
+                </p>
+
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">3+</span>
+                        <span class="stat-label">Anos Experiência</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">15+</span>
+                        <span class="stat-label">Projetos</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">Dedicação</span>
+                    </div>
+                </div>
+
+                <div class="cta-buttons">
+                    <a href="#projects" class="btn btn-primary">
+                        <i class="fas fa-rocket"></i>
+                        Ver Projetos
+                    </a>
+                    <a href="#contact" class="btn btn-secondary">
+                        <i class="fas fa-envelope"></i>
+                        Contato
+                    </a>
+                </div>
+            </div>
+
+            <div class="hero-image">
+                <div class="profile-frame">
+                    <div class="frame-corner corner-tl"></div>
+                    <div class="frame-corner corner-tr"></div>
+                    <div class="frame-corner corner-bl"></div>
+                    <div class="frame-corner corner-br"></div>
+                    <img src="profile.jpeg" alt="Gabriel Nunes" class="profile-img">
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section class="projects-section" id="projects">
+            <div class="section-title">
+                <h2>Projetos em Destaque</h2>
+                <p>Soluções reais utilizando as melhores práticas de Data Engineering e AI</p>
+            </div>
+
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="project-card">
+                    <div class="project-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>BANVIC Analytics Project</h3>
+                    <p>
+                        Análise detalhada de dados empresariais utilizando Modern Data Stack. 
+                        Implementação de pipeline ETL completo com dbt, transformações de dados 
+                        e dashboards analíticos para tomada de decisão estratégica.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">dbt</span>
+                        <span class="tech-tag">SQL</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Modern Data Stack</span>
+                    </div>
+                    <a href="https://github.com/Gabriel-boop-deep/BANVIC_ANALYTICS_PROJECT" target="_blank" class="project-link">
+                        Ver no GitHub <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card">
+                    <div class="project-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Classificação de Imagens CNN</h3>
+                    <p>
+                        Modelo de Deep Learning para classificação de imagens usando Redes Neurais 
+                        Convolucionais (CNN) com TensorFlow. Implementação de arquitetura customizada 
+                        com técnicas de data augmentation e otimização de hiperparâmetros.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">TensorFlow</span>
+                        <span class="tech-tag">Keras</span>
+                        <span class="tech-tag">CNN</span>
+                        <span class="tech-tag">Python</span>
+                    </div>
+                    <a href="https://github.com/Gabriel-boop-deep/Classifica-o-de-Imagens-com-CNN-e-TensorFlow" target="_blank" class="project-link">
+                        Ver no GitHub <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card">
+                    <div class="project-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3>DBT BV Monitoring</h3>
+                    <p>
+                        Sistema de monitoramento e validação de dados usando dbt (data build tool). 
+                        Implementação de testes automatizados, documentação de dados e observabilidade 
+                        de pipelines de dados para garantir qualidade e confiabilidade.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">dbt</span>
+                        <span class="tech-tag">SQL</span>
+                        <span class="tech-tag">Data Quality</span>
+                        <span class="tech-tag">Testing</span>
+                    </div>
+                    <a href="https://github.com/Gabriel-boop-deep/dbt_bv_monitoring" target="_blank" class="project-link">
+                        Ver no GitHub <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section class="skills-section" id="skills">
+            <div class="section-title">
+                <h2>Expertise Técnica</h2>
+                <p>Tecnologias e ferramentas que domino</p>
+            </div>
+
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <span class="skill-icon">🤖</span>
+                    <h3>Machine Learning</h3>
+                    <p>TensorFlow, PyTorch, Scikit-learn</p>
+                </div>
+
+                <div class="skill-card">
+                    <span class="skill-icon">📊</span>
+                    <h3>Data Engineering</h3>
+                    <p>dbt, Airflow, SQL, ETL/ELT</p>
+                </div>
+
+                <div class="skill-card">
+                    <span class="skill-icon">🐍</span>
+                    <h3>Python</h3>
+                    <p>Pandas, NumPy, FastAPI</p>
+                </div>
+
+                <div class="skill-card">
+                    <span class="skill-icon">☁️</span>
+                    <h3>Cloud & DevOps</h3>
+                    <p>Docker, Git, CI/CD</p>
+                </div>
+
+                <div class="skill-card">
+                    <span class="skill-icon">📈</span>
+                    <h3>Data Analytics</h3>
+                    <p>Modern Data Stack, BI</p>
+                </div>
+
+                <div class="skill-card">
+                    <span class="skill-icon">🧠</span>
+                    <h3>Deep Learning</h3>
+                    <p>CNN, RNN, Transfer Learning</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact-section" id="contact">
+            <h2>Vamos Conversar?</h2>
+            <p>Estou sempre aberto a novos projetos e oportunidades de colaboração</p>
             
-            statusDiv.className = 'status loading';
-            statusDiv.textContent = '⏳ Gerando apresentação... Por favor, aguarde.';
-            btn.disabled = true;
-            
-            setTimeout(function() {
-                try {
-                    let pres = new PptxGenJS();
-                    
-                    pres.layout = 'LAYOUT_WIDE';
-                    pres.author = 'Gabriel Nunes e Gabriel Santos';
-                    pres.company = 'ENG295';
-                    pres.subject = 'DDS - Prevenção de Incêndios';
-                    pres.title = 'Prevenção de Incêndios';
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/gabriel-nunes-barbosa-nogueira/" target="_blank" class="social-btn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://github.com/Gabriel-boop-deep/" target="_blank" class="social-btn">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="mailto:gabrielnbn@hotmail.com?subject=Oportunidade%20de%20Colaboração%20-%20Contato%20via%20Portfólio&body=Olá%20Gabriel%2C%0A%0AVisitei%20seu%20portfólio%20e%20fiquei%20impressionado%20com%20seus%20projetos%20em%20AI%20e%20Data%20Engineering.%0A%0AGostaria%20de%20conversar%20sobre%3A%0A%0A%5BDescreva%20aqui%20o%20motivo%20do%20contato%5D%0A%0AAguardo%20seu%20retorno!%0A%0AAtenciosamente%2C%0A%5BSeu%20nome%5D" class="social-btn">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+        </section>
 
-                    // SLIDE 1
-                    let slide1 = pres.addSlide();
-                    slide1.background = { color: '1F4788' };
-                    slide1.addText('Diálogo Diário de Segurança (DDS)', {
-                        x: 0.5, y: 1.5, w: 12, h: 0.8,
-                        fontSize: 44, bold: true, color: 'FFFFFF', align: 'center'
-                    });
-                    slide1.addText('Prevenção de Incêndios em Áreas com\nVapores Inflamáveis e Equipamentos Elétricos', {
-                        x: 0.5, y: 2.5, w: 12, h: 1.2,
-                        fontSize: 26, color: 'FFD700', align: 'center'
-                    });
-                    slide1.addText('Gabriel Nunes e Gabriel Santos', {
-                        x: 0.5, y: 4.5, w: 12, h: 0.5,
-                        fontSize: 20, color: 'FFFFFF', align: 'center', bold: true
-                    });
-                    slide1.addText('ENG295 - Higiene e Segurança do Trabalho\nProf. Henrique Santos Junqueira\nOutubro de 2025', {
-                        x: 0.5, y: 5.1, w: 12, h: 1,
-                        fontSize: 16, color: 'CCCCCC', align: 'center'
-                    });
-                    slide1.addText('1', { x: 0.3, y: 7, fontSize: 12, color: 'FFFFFF' });
-                    slide1.addText('Gabriel Nunes e Gabriel Santos', { x: 10.5, y: 7, fontSize: 10, color: 'CCCCCC' });
-
-                    // SLIDE 2
-                    let slide2 = pres.addSlide();
-                    slide2.addText('Contexto e Relevância', {
-                        x: 0.5, y: 0.3, w: 12, h: 0.6,
-                        fontSize: 36, bold: true, color: '1F4788'
-                    });
-                    slide2.addText('Por que este tema é crítico?', {
-                        x: 0.5, y: 1.2, w: 12, h: 0.4,
-                        fontSize: 20, bold: true, color: 'CC0000'
-                    });
-                    slide2.addText('A combinação de vapores inflamáveis com equipamentos elétricos representa um dos maiores riscos em ambientes industriais químicos e petroquímicos.', {
-                        x: 0.5, y: 1.7, w: 12, h: 0.6,
-                        fontSize: 15, color: '333333'
-                    });
-                    slide2.addText('Estatísticas:\n• 30-40% dos incêndios industriais envolvem ignição elétrica\n• Vapores inflamáveis são fonte comum em plantas químicas', {
-                        x: 0.5, y: 2.6, w: 5.5, h: 1.2,
-                        fontSize: 13, color: '333333'
-                    });
-                    slide2.addText('Consequências:\n• Mortes e lesões graves\n• Danos materiais significativos\n• Paralisação da produção\n• Impactos ambientais', {
-                        x: 6.5, y: 2.6, w: 5.5, h: 1.2,
-                        fontSize: 13, color: '333333'
-                    });
-                    slide2.addText('Caso Real: Em 2019, faísca de equipamento não certificado causou explosão em tanque de solvente: 2 mortes e R$ 15 milhões em prejuízos.', {
-                        x: 0.5, y: 4.3, w: 12, h: 0.6,
-                        fontSize: 13, color: '333333'
-                    });
-                    slide2.addText('2', { x: 0.3, y: 7, fontSize: 12, color: '666666' });
-                    slide2.addText('Gabriel Nunes e Gabriel Santos', { x: 10.5, y: 7, fontSize: 10, color: '999999' });
-
-                    // SLIDE 3
-                    let slide3 = pres.addSlide();
-                    slide3.addText('Descrição do Risco Integrado', {
-                        x: 0.5, y: 0.3, w: 12, h: 0.6,
-                        fontSize: 36, bold: true, color: '1F4788'
-                    });
-                    slide3.addText('Como ocorre a ignição? - Triângulo do Fogo', {
-                        x: 0.5, y: 1.1, w: 12, h: 0.5,
-                        fontSize: 22, bold: true, color: 'CC0000'
-                    });
-                    slide3.addText('Fonte de Ignição:\n• Faíscas elétricas\n• Arcos elétricos\n• Superfícies quentes\n• Eletricidade estática', {
-                        x: 0.5, y: 2, w: 3.5, h: 1.5,
-                        fontSize: 12, color: '333333'
-                    });
-                    slide3.addText('Combustível:\n• Vapores de solventes\n• Gases inflamáveis\n• Névoas combustíveis\n• Poeiras orgânicas', {
-                        x: 4.5, y: 2, w: 3.5, h: 1.5,
-                        fontSize: 12, color: '333333'
-                    });
-                    slide3.addText('Comburente:\n• Oxigênio do ar\n• Ventilação inadequada\n• Concentração no LIE', {
-                        x: 8.5, y: 2, w: 3.5, h: 1.5,
-                        fontSize: 12, color: '333333'
-                    });
-                    slide3.addText('IGNIÇÃO + COMBUSTÍVEL + COMBURENTE = INCÊNDIO/EXPLOSÃO', {
-                        x: 0.5, y: 4, w: 12, h: 0.6,
-                        fontSize: 18, bold: true, color: 'FFFFFF', align: 'center', fill: { color: 'CC0000' }
-                    });
-                    slide3.addText('Atividades de risco: Manutenção elétrica, operação de bombas, transferência de líquidos inflamáveis, limpeza de tanques, trabalhos a quente.', {
-                        x: 0.5, y: 5, w: 12, h: 0.6,
-                        fontSize: 12, color: '333333'
-                    });
-                    slide3.addText('3', { x: 0.3, y: 7, fontSize: 12, color: '666666' });
-                    slide3.addText('Gabriel Nunes e Gabriel Santos', { x: 10.5, y: 7, fontSize: 10, color: '999999' });
-
-                    // SLIDE 4
-                    let slide4 = pres.addSlide();
-                    slide4.addText('Legislações e Normas Aplicáveis', {
-                        x: 0.5, y: 0.3, w: 12, h: 0.6,
-                        fontSize: 36, bold: true, color: '1F4788'
-                    });
-                    slide4.addText('NR-10 - Segurança em Instalações e Serviços em Eletricidade\nEstabelece requisitos para trabalho em ambientes com risco elétrico.', {
-                        x: 0.5, y: 1.3, w: 12, h: 0.8,
-                        fontSize: 13, color: '333333'
-                    });
-                    slide4.addText('NR-20 - Segurança com Inflamáveis e Combustíveis\nDefine requisitos para instalações que manuseiam inflamáveis.', {
-                        x: 0.5, y: 2.3, w: 12, h: 0.8,
-                        fontSize: 13, color: '333333'
-                    });
-                    slide4.addText('NR-23 - Proteção Contra Incêndios\nEstabelece medidas de prevenção e combate a incêndios.', {
-                        x: 0.5, y: 3.3, w: 12, h: 0.8,
-                        fontSize: 13, color: '333333'
-                    });
-                    slide4.addText('NBR IEC 60079 - Atmosferas Explosivas\nRequisitos para equipamentos em atmosferas explosivas (Zonas 0, 1 e 2).', {
-                        x: 0.5, y: 4.5, w: 12, h: 0.8,
-                        fontSize: 13, color: '333333'
-                    });
-                    slide4.addText('4', { x: 0.3, y: 7, fontSize: 12, color: '666666' });
-                    slide4.addText('Gabriel Nunes e Gabriel Santos', { x: 10.5, y: 7, fontSize: 10, color: '999999' });
-
-                    // SLIDE 5
-                    let slide5 = pres.addSlide();
-                    slide5.addText('Medidas Preventivas', {
-                        x: 0.5, y: 0.3, w: 12, h: 0.6,
-                        fontSize: 36, bold: true, color: '1F4788'
-                    });
-                    slide5.addText('Medidas Técnicas:\n• Equipamentos certificados Ex\n• Aterramento adequado\n• Detectores de gases\n• Ventilação adequada\n• Manutenção preventiva\n• Proteção elétrica', {
-                        x: 0.5, y: 1.2, w: 5.5, h: 2.5,
-                        fontSize: 13, color: '333333'
-                    });
-                    slide5.addText('Medidas Administrativas:\n• Treinamento periódico\n• Procedimentos seguros\n• Permissão de Trabalho\n• Sinalização adequada\n• Inspeções regulares\n• Controle de derramamentos', {
-                        x: 6.5, y: 1.2, w: 5.5, h: 2.5,
-                        fontSize: 13, color: '333333'
-                    });
-                    slide5.addText('ATENÇÃO: Nunca use equipamentos não certificados Ex em áreas classificadas!', {
-                        x: 0.5, y: 4.5, w: 12, h: 0.6,
-                        fontSize: 14, bold: true, color: 'CC0000', align: 'center'
-                    });
-                    slide5.addText('5', { x: 0.3, y: 7, fontSize: 12, color: '666666' });
-                    slide5.addText('Gabriel Nunes e Gabriel Santos', { x: 10.5, y: 7, fontSize: 10, color: '999999' });
-
-                    // SLIDE 6
-                    let slide6 = pres.addSlide();
-                    slide6.addText('Checklist e Procedimentos', {
-                        x: 0.5, y: 0.3, w: 12, h: 0.6,
-                        fontSize: 36, bold: true, color: '1F4788'
-                    });
-                    slide6.addText('Checklist Diária de Inspeção:', {
-                        x: 0.5, y: 1.1, w: 12, h: 0.4,
-                        fontSize: 18, bold: true, color: '009900'
-                    });
-                    slide6.addText('Equipamentos:\n□ Certificação Ex\n□ Cabos e conexões\n□ Invólucros\n□ Aterramento', {
-                        x: 0.5, y: 1.7, w: 5.5, h: 1.5,
-                        fontSize: 12, color: '333333'
-                    });
-                    slide6.addText('Ambiente:\n□ Sem vazamentos\n□ Ventilação OK\n□ Detectores OK\n□ Sinalização OK', {
-                        x: 6.5, y: 1.7, w: 5.5, h: 1.5,
-                        fontSize: 12, color: '333333'
-                    });
-                    slide6.addText('Procedimento LOTO (5 passos):', {
-                        x: 0.5, y: 3.5, w: 12, h: 0.4,
-                        fontSize: 16, bold: true, color: '0066CC'
-                    });
-                    slide6.addText('1. PREPARAÇÃO - Identificar fontes de energia\n2. DESLIGAR - Desligar equipamento\n3. ISOLAR - Isolar fontes de energia\n4. BLOQUEAR - Aplicar cadeados e etiquetas\n5. TESTAR - Verificar energia zero', {
-                        x: 0.5, y: 4.1, w: 12, h: 1.8,
-                        fontSize: 12, color: '333333'
-                    });
-                    slide6.addText('6', { x: 0.3, y: 7, fontSize: 12, color: '666666' });
-                    slide6.addText('Gabriel Nunes e Gabriel Santos', { x: 10.5, y: 7, fontSize: 10, color: '999999' });
-
-                    // SLIDE 7
-                    let slide7 = pres.addSlide();
-                    slide7.addText('Plano de Emergência', {
-                        x: 0.5, y: 0.3, w: 12, h: 0.6,
-                        fontSize: 36, bold: true, color: '1F4788'
-                    });
-                    slide7.addText('Fluxo de Resposta:', {
-                        x: 0.5, y: 1.1, w: 12, h: 0.4,
-                        fontSize: 20, bold: true, color: 'CC0000'
-                    });
-                    slide7.addText('1. DETECÇÃO - Identificar princípio de incêndio\n2. ALARME - Acionar alarme de emergência\n3. DESLIGAMENTO - Desligar energia elétrica\n4. CONTENÇÃO - Usar extintores adequados (Classe B/C)\n5. EVACUAÇÃO - Evacuar para ponto seguro', {
-                        x: 0.5, y: 1.8, w: 12, h: 2.2,
-                        fontSize: 13, color: '333333', bold: true
-                    });
-                    slide7.addText('Responsabilidades:', {
-                        x: 0.5, y: 4.3, w: 12, h: 0.3,
-                        fontSize: 16, bold: true, color: '1F4788'
-                    });
-                    slide7.addText('OPERADOR: Detectar, alarmar, contenção inicial', { x: 0.5, y: 4.8, w: 3.8, h: 0.6, fontSize: 11, color: '333333', align: 'center' });
-                    slide7.addText('SUPERVISOR: Coordenar evacuação', { x: 4.6, y: 4.8, w: 3.8, h: 0.6, fontSize: 11, color: '333333', align: 'center' });
-                    slide7.addText('BRIGADA: Combate e resgate', { x: 8.7, y: 4.8, w: 3.8, h: 0.6, fontSize: 11, color: '333333', align: 'center' });
-                    slide7.addText('NUNCA use água em incêndios elétricos! Use CO2 ou Pó Químico.', {
-                        x: 0.5, y: 5.8, w: 12, h: 0.4,
-                        fontSize: 14, bold: true, color: 'CC0000', align: 'center'
-                    });
-                    slide7.addText('7', { x: 0.3, y: 7, fontSize: 12, color: '666666' });
-                    slide7.addText('Gabriel Nunes e Gabriel Santos', { x: 10.5, y: 7, fontSize: 10, color: '999999' });
-
-                    // SLIDE 8
-                    let slide8 = pres.addSlide();
-                    slide8.background = { color: '1F4788' };
-                    slide8.addText('Conclusão', {
-                        x: 0.5, y: 0.5, w: 12, h: 0.6,
-                        fontSize: 36, bold: true, color: 'FFFFFF'
-                    });
-                    slide8.addText('Principais Aprendizados:', {
-                        x: 0.5, y: 1.3, w: 12, h: 0.5,
-                        fontSize: 22, bold: true, color: 'FFD700', align: 'center'
-                    });
-                    slide8.addText('• Vapores + equipamentos elétricos = risco crítico\n• Equipamentos Ex são obrigatórios\n• Prevenção salva vidas\n• Conformidade com NR-10, NR-20 e NR-23', {
-                        x: 1, y: 2, w: 11, h: 2,
-                        fontSize: 16, color: 'FFFFFF'
-                    });
-                    slide8.addText('O que fazer HOJE?', {
-                        x: 0.5, y: 4.3, w: 12, h: 0.4,
-                        fontSize: 18, bold: true, color: 'FFD700', align: 'center'
-                    });
-                    slide8.addText('1. Verificar certificação\n2. Reportar anomalias\n3. Revisar procedimentos\n4. Compartilhar conhecimento', {
-                        x: 1, y: 4.8, w: 11, h: 1.2,
-                        fontSize: 15, color: 'FFFFFF'
-                    });
-                    slide8.addText('A segurança começa com VOCÊ!', {
-                        x: 0.5, y: 6.3, w: 12, h: 0.5,
-                        fontSize: 20, bold: true, color: 'FFD700', align: 'center'
-                    });
-                    slide8.addText('8', { x: 0.3, y: 7, fontSize: 12, color: 'FFFFFF' });
-                    slide8.addText('Gabriel Nunes e Gabriel Santos', { x: 10.5, y: 7, fontSize: 10, color: 'CCCCCC' });
-
-                    // SLIDE 9
-                    let slide9 = pres.addSlide();
-                    slide9.addText('Perguntas para Reflexão', {
-                        x: 0.5, y: 0.3, w: 12, h: 0.6,
-                        fontSize: 36, bold: true, color: '1F4788'
-                    });
-                    slide9.addText('1. Quais são os três elementos do triângulo do fogo?', { x: 0.5, y: 1.3, w: 12, h: 0.4, fontSize: 13, bold: true, color: '0066CC' });
-                    slide9.addText('R: Fonte de ignição, combustível e comburente', { x: 0.5, y: 1.75, w: 12, h: 0.3, fontSize: 11, color: '666666', italic: true });
-                    
-                    slide9.addText('2. Por que não usar equipamentos comuns em áreas classificadas?', { x: 0.5, y: 2.4, w: 12, h: 0.4, fontSize: 13, bold: true, color: '009900' });
-                    slide9.addText('R: Podem gerar faíscas que ignitem atmosfera explosiva', { x: 0.5, y: 2.85, w: 12, h: 0.3, fontSize: 11, color: '666666', italic: true });
-                    
-                    slide9.addText('3. Cite 3 NRs aplicáveis ao tema.', { x: 0.5, y: 3.5, w: 12, h: 0.4, fontSize: 13, bold: true, color: 'CC6600' });
-                    slide9.addText('R: NR-10, NR-20 e NR-23', { x: 0.5, y: 3.95, w: 12, h: 0.3, fontSize: 11, color: '666666', italic: true });
-                    
-                    slide9.addText('4. Qual extintor usar em incêndios elétricos?', { x: 0.5, y: 4.6, w: 12, h: 0.4, fontSize: 13, bold: true, color: '663399' });
-                    slide9.addText('R: CO2 ou Pó Químico. NUNCA água', { x: 0.5, y: 5.05, w: 12, h: 0.3, fontSize: 11, color: '666666', italic: true });
-                    
-                    slide9.addText('9', { x: 0.3, y: 7, fontSize: 12, color: '666666' });
-                    slide9.addText('Gabriel Nunes e Gabriel Santos', { x: 10.5, y: 7, fontSize: 10, color: '999999' });
-
-                    // SLIDE 10
-                    let slide10 = pres.addSlide();
-                    slide10.addText('Referências Bibliográficas', {
-                        x: 0.5, y: 0.3, w: 12, h: 0.6,
-                        fontSize: 32, bold: true, color: '1F4788'
-                    });
-                    
-                    const refs1 = 'BRASIL. Ministério do Trabalho e Emprego. NR-10: Segurança em Instalações e Serviços em Eletricidade. Brasília: MTE, 2004. Disponível em: https://www.gov.br/trabalho-e-emprego. Acesso em: 20 out. 2025.';
-                    const refs2 = 'BRASIL. Ministério do Trabalho e Emprego. NR-20: Segurança e Saúde no Trabalho com Inflamáveis e Combustíveis. Brasília: MTE, 2014.';
-                    const refs3 = 'BRASIL. Ministério do Trabalho e Emprego. NR-23: Proteção Contra Incêndios. Brasília: MTE, 2011.';
-                    const refs4 = 'ASSOCIAÇÃO BRASILEIRA DE NORMAS TÉCNICAS. ABNT NBR IEC 60079-10-1: Atmosferas explosivas. Rio de Janeiro: ABNT, 2009.';
-                    const refs5 = 'ASSOCIAÇÃO BRASILEIRA DE NORMAS TÉCNICAS. ABNT NBR 6023: Informação e documentação - Referências. Rio de Janeiro: ABNT, 2018.';
-                    
-                    slide10.addText(refs1, { x: 0.5, y: 1.2, w: 12, h: 0.8, fontSize: 10, color: '333333' });
-                    slide10.addText(refs2, { x: 0.5, y: 2.1, w: 12, h: 0.6, fontSize: 10, color: '333333' });
-                    slide10.addText(refs3, { x: 0.5, y: 2.8, w: 12, h: 0.6, fontSize: 10, color: '333333' });
-                    slide10.addText(refs4, { x: 0.5, y: 3.5, w: 12, h: 0.6, fontSize: 10, color: '333333' });
-                    slide10.addText(refs5, { x: 0.5, y: 4.2, w: 12, h: 0.6, fontSize: 10, color: '333333' });
-                    
-                    slide10.addText('10', { x: 0.3, y: 7, fontSize: 12, color: '666666' });
-                    slide10.addText('Gabriel Nunes e Gabriel Santos', { x: 10.5, y: 7, fontSize: 10, color: '999999' });
-
-                    // SLIDE 11
-                    let slide11 = pres.addSlide();
-                    slide11.addText('Referências (continuação)', {
-                        x: 0.5, y: 0.3, w: 12, h: 0.6,
-                        fontSize: 32, bold: true, color: '1F4788'
-                    });
-                    
-                    const refs6 = 'CANAL DDS DIFERENTE. VOCÊ TEM ESCOLHA? YouTube, 2019. Disponível em: https://www.youtube.com/watch?v=ZfQAEm_E81U. Acesso em: 08 maio 2025.';
-                    const refs7 = 'NESTOR NETO. DDS não! Na verdade é um MDS. Canal Nestor W Neto - Segurança do Trabalho. YouTube, 2022. Disponível em: https://www.youtube.com/shorts/Zv9cZxas-fo. Acesso em: 08 maio 2025.';
-                    const refs8 = 'SAMPAIO, Jean. A importância do diálogo diário de segurança nas empresas. 2019. Trabalho de Conclusão de Curso (Especialização) - Universidade Tecnológica Federal do Paraná, Curitiba, 2019.';
-                    const refs9 = 'SILVA, Pedro. Relevância do diálogo diário de segurança (DDS) e planejamento diário de segurança (PDST). 2017. Trabalho de Conclusão de Curso - UFRGS, Porto Alegre, 2017.';
-                    const refs10 = 'FRANCO, L. E. A. DE O. et al. A importância do diálogo diário de segurança (DDS): uma revisão de literatura. Revista Contemporânea, v. 3, n. 8, p. 12887-12901, 2023.';
-                    
-                    slide11.addText(refs6, { x: 0.5, y: 1.2, w: 12, h: 0.7, fontSize: 10, color: '333333' });
-                    slide11.addText(refs7, { x: 0.5, y: 2, w: 12, h: 0.8, fontSize: 10, color: '333333' });
-                    slide11.addText(refs8, { x: 0.5, y: 2.9, w: 12, h: 0.8, fontSize: 10, color: '333333' });
-                    slide11.addText(refs9, { x: 0.5, y: 3.8, w: 12, h: 0.8, fontSize: 10, color: '333333' });
-                    slide11.addText(refs10, { x: 0.5, y: 4.7, w: 12, h: 0.8, fontSize: 10, color: '333333' });
-                    
-                    slide11.addText('11', { x: 0.3, y: 7, fontSize: 12, color: '666666' });
-                    slide11.addText('Gabriel Nunes e Gabriel Santos', { x: 10.5, y: 7, fontSize: 10, color: '999999' });
-
-                    // Gerar arquivo
-                    pres.writeFile({ fileName: 'DDS_Prevencao_Incendios_Gabriel_Nunes_Gabriel_Santos.pptx' })
-                        .then(function() {
-                            statusDiv.className = 'status success';
-                            statusDiv.textContent = '✅ Apresentação gerada com sucesso! O download deve iniciar automaticamente.';
-                            btn.disabled = false;
-                        })
-                        .catch(function(err) {
-                            statusDiv.className = 'status error';
-                            statusDiv.textContent = '❌ Erro ao gerar apresentação: ' + err.message;
-                            btn.disabled = false;
-                            console.error('Erro:', err);
-                        });
-                        
-                } catch (err) {
-                    statusDiv.className = 'status error';
-                    statusDiv.textContent = '❌ Erro ao criar apresentação: ' + err.message;
-                    btn.disabled = false;
-                    console.error('Erro:', err);
-                }
-            }, 500);
-        });
-    </script>
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2025 Gabriel Nunes. Desenvolvido com 💙 e muita cafeína ☕</p>
+        </footer>
+    </div>
 </body>
 </html>
