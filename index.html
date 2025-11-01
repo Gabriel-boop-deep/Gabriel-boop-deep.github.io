@@ -416,9 +416,84 @@
             gap: 1rem;
         }
 
-        /* Skills Section */
-        .skills-section {
+        /* Video Section */
+        .video-section {
             margin-bottom: 8rem;
+        }
+
+        .video-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 245, 255, 0.2);
+            border-radius: 20px;
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .video-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            animation: videoScan 3s infinite;
+        }
+
+        @keyframes videoScan {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0, 245, 255, 0.3);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .video-description {
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .video-description h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .video-description p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .video-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-top: 1rem;
         }
 
         .skills-grid {
@@ -578,6 +653,7 @@
             <ul class="nav-links">
                 <li><a href="#about">Sobre</a></li>
                 <li><a href="#projects">Projetos</a></li>
+                <li><a href="#video">Vídeo</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#contact">Contato</a></li>
             </ul>
@@ -705,6 +781,36 @@
                     <a href="https://github.com/Gabriel-boop-deep/dbt_bv_monitoring" target="_blank" class="project-link">
                         Ver no GitHub <i class="fas fa-arrow-right"></i>
                     </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Video Section -->
+        <section class="video-section" id="video">
+            <div class="section-title">
+                <h2>Conteúdo em Vídeo</h2>
+                <p>Compartilhando conhecimento e experiências em IA e Data Science</p>
+            </div>
+
+            <div class="video-container">
+                <div class="video-wrapper">
+                    <iframe 
+                        src="https://www.youtube.com/embed/fGLR5h1n2Fk" 
+                        title="Gabriel Nunes - Vídeo sobre IA e Data Science"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="video-description">
+                    <h3>Explorando IA e Data Science</h3>
+                    <p>
+                        Neste vídeo, compartilho insights sobre Inteligência Artificial, 
+                        Machine Learning e as melhores práticas em Engenharia de Dados.
+                    </p>
+                    <span class="video-badge">
+                        <i class="fab fa-youtube"></i>
+                        Assista no YouTube
+                    </span>
                 </div>
             </div>
         </section>
