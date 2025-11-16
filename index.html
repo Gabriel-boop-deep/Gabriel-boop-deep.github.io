@@ -21,6 +21,10 @@
             --darker: #050810;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: var(--darker);
@@ -38,6 +42,7 @@
             height: 100%;
             z-index: 0;
             opacity: 0.4;
+            pointer-events: none;
         }
 
         .gradient-orb {
@@ -90,6 +95,31 @@
                 linear-gradient(90deg, rgba(0, 245, 255, 0.03) 1px, transparent 1px);
             background-size: 40px 40px;
             z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Parallax Background Image */
+        .parallax-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+            pointer-events: none;
+        }
+
+        .parallax-bg.active {
+            opacity: 1;
+        }
+
+        .parallax-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.3) blur(3px);
         }
 
         /* Container */
@@ -99,6 +129,139 @@
             max-width: 1400px;
             margin: 0 auto;
             padding: 2rem;
+        }
+
+        /* Top Navigation Bar */
+        .top-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(5, 8, 16, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 245, 255, 0.1);
+            z-index: 1000;
+            transform: translateY(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        .top-nav.visible {
+            transform: translateY(0);
+        }
+
+        .top-nav-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .top-nav .logo {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-shadow: 0 0 20px var(--primary);
+        }
+
+        .top-nav .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .top-nav .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .top-nav .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s;
+            box-shadow: 0 0 10px var(--primary);
+        }
+
+        .top-nav .nav-links a:hover::after,
+        .top-nav .nav-links a.active::after {
+            width: 100%;
+        }
+
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1001;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 300px;
+            height: 100vh;
+            background: rgba(5, 8, 16, 0.98);
+            backdrop-filter: blur(20px);
+            border-left: 1px solid rgba(0, 245, 255, 0.2);
+            padding: 5rem 2rem;
+            z-index: 999;
+            transition: right 0.3s ease;
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu .nav-links {
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .mobile-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 998;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .mobile-overlay.active {
+            opacity: 1;
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            z-index: 1001;
+            transform-origin: left;
+            transform: scaleX(0);
+            transition: transform 0.1s ease;
         }
 
         /* Navigation */
@@ -130,7 +293,6 @@
             transition: all 0.3s;
             position: relative;
             padding: 0.5rem 0;
-            overflow: hidden;
         }
 
         .nav-links a::after {
@@ -149,60 +311,6 @@
             width: 100%;
         }
 
-        /* Particles on hover */
-        .nav-links a::before {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 100%;
-            height: 20px;
-            pointer-events: none;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .nav-links a:hover::before {
-            opacity: 1;
-            animation: particleRain 1s ease-out infinite;
-        }
-
-        @keyframes particleRain {
-            0% {
-                background-image: 
-                    radial-gradient(circle, var(--primary) 1px, transparent 1px),
-                    radial-gradient(circle, var(--primary) 1px, transparent 1px),
-                    radial-gradient(circle, var(--primary) 1px, transparent 1px),
-                    radial-gradient(circle, var(--primary) 1px, transparent 1px),
-                    radial-gradient(circle, var(--primary) 1px, transparent 1px);
-                background-size: 3px 3px;
-                background-position: 
-                    10% -20px,
-                    30% -20px,
-                    50% -20px,
-                    70% -20px,
-                    90% -20px;
-                background-repeat: no-repeat;
-            }
-            100% {
-                background-image: 
-                    radial-gradient(circle, var(--primary) 1px, transparent 1px),
-                    radial-gradient(circle, var(--primary) 1px, transparent 1px),
-                    radial-gradient(circle, var(--primary) 1px, transparent 1px),
-                    radial-gradient(circle, var(--primary) 1px, transparent 1px),
-                    radial-gradient(circle, var(--primary) 1px, transparent 1px);
-                background-size: 3px 3px;
-                background-position: 
-                    10% 25px,
-                    30% 25px,
-                    50% 25px,
-                    70% 25px,
-                    90% 25px;
-                background-repeat: no-repeat;
-                opacity: 0;
-            }
-        }
-
         /* Hero Section */
         .hero {
             display: grid;
@@ -211,6 +319,19 @@
             align-items: center;
             margin-bottom: 8rem;
             min-height: 80vh;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .hero-content h1 {
@@ -278,6 +399,7 @@
             gap: 0.8rem;
             position: relative;
             overflow: hidden;
+            cursor: pointer;
         }
 
         .btn-primary {
@@ -349,6 +471,12 @@
             width: 60px;
             height: 60px;
             border: 3px solid var(--primary);
+            animation: cornerPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes cornerPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
         }
 
         .corner-tl { top: -15px; left: -15px; border-right: none; border-bottom: none; }
@@ -384,7 +512,7 @@
 
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2rem;
         }
 
@@ -509,7 +637,7 @@
 
         .video-wrapper {
             position: relative;
-            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            padding-bottom: 56.25%;
             height: 0;
             overflow: hidden;
             border-radius: 15px;
@@ -556,7 +684,7 @@
 
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 2rem;
         }
 
@@ -646,6 +774,36 @@
             box-shadow: 0 10px 30px rgba(0, 245, 255, 0.3);
         }
 
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border: none;
+            border-radius: 50%;
+            color: #fff;
+            font-size: 1.2rem;
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(100px);
+            transition: all 0.3s;
+            z-index: 999;
+            box-shadow: 0 5px 20px rgba(0, 245, 255, 0.3);
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 245, 255, 0.5);
+        }
+
         /* Footer */
         footer {
             text-align: center;
@@ -654,6 +812,7 @@
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
+        /* Responsive */
         @media (max-width: 968px) {
             .hero {
                 grid-template-columns: 1fr;
@@ -678,31 +837,103 @@
                 flex-wrap: wrap;
             }
 
-            .nav-links {
-                gap: 1rem;
-                font-size: 0.9rem;
+            nav .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .top-nav .nav-links {
+                display: none;
+            }
+
+            .top-nav .mobile-menu-btn {
+                display: block;
             }
         }
 
         @media (max-width: 600px) {
-            .projects-grid, .skills-grid {
+            .projects-grid {
                 grid-template-columns: 1fr;
             }
 
-            .nav-links {
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-stats {
                 flex-direction: column;
-                align-items: center;
+                gap: 1.5rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            .video-container {
+                padding: 1.5rem;
+            }
+
+            .scroll-top {
+                bottom: 1rem;
+                right: 1rem;
+                width: 45px;
+                height: 45px;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- Top Navigation -->
+    <div class="top-nav" id="topNav">
+        <div class="top-nav-content">
+            <div class="logo">&lt;GN/&gt;</div>
+            <ul class="nav-links">
+                <li><a href="#about" class="nav-link">Sobre</a></li>
+                <li><a href="#projects" class="nav-link">Projetos</a></li>
+                <li><a href="#video" class="nav-link">Vídeo</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#contact" class="nav-link">Contato</a></li>
+            </ul>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+    <div class="mobile-menu" id="mobileMenu">
+        <ul class="nav-links">
+            <li><a href="#about" class="nav-link mobile-link">Sobre</a></li>
+            <li><a href="#projects" class="nav-link mobile-link">Projetos</a></li>
+            <li><a href="#video" class="nav-link mobile-link">Vídeo</a></li>
+            <li><a href="#skills" class="nav-link mobile-link">Skills</a></li>
+            <li><a href="#contact" class="nav-link mobile-link">Contato</a></li>
+        </ul>
+    </div>
+
+    <!-- Background Animation -->
     <div class="bg-animation">
         <div class="gradient-orb orb1"></div>
         <div class="gradient-orb orb2"></div>
         <div class="gradient-orb orb3"></div>
     </div>
     <div class="grid-overlay"></div>
+
+    <!-- Parallax Background Image -->
+    <div class="parallax-bg" id="parallaxBg">
+        <img src="profile.jpeg" alt="Background">
+    </div>
 
     <div class="container">
         <!-- Navigation -->
@@ -715,6 +946,9 @@
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#contact">Contato</a></li>
             </ul>
+            <button class="mobile-menu-btn" id="mobileMenuBtnMain">
+                <i class="fas fa-bars"></i>
+            </button>
         </nav>
 
         <!-- Hero Section -->
@@ -736,211 +970,3 @@
                     </div>
                     <div class="stat-item">
                         <span class="stat-number">15+</span>
-                        <span class="stat-label">Projetos</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">100%</span>
-                        <span class="stat-label">Dedicação</span>
-                    </div>
-                </div>
-
-                <div class="cta-buttons">
-                    <a href="#projects" class="btn btn-primary">
-                        <i class="fas fa-rocket"></i>
-                        Ver Projetos
-                    </a>
-                    <a href="#contact" class="btn btn-secondary">
-                        <i class="fas fa-envelope"></i>
-                        Contato
-                    </a>
-                </div>
-            </div>
-
-            <div class="hero-image">
-                <div class="profile-frame">
-                    <div class="frame-corner corner-tl"></div>
-                    <div class="frame-corner corner-tr"></div>
-                    <div class="frame-corner corner-bl"></div>
-                    <div class="frame-corner corner-br"></div>
-                    <img src="profile.jpeg" alt="Gabriel Nunes" class="profile-img">
-                </div>
-            </div>
-        </section>
-
-        <!-- Projects Section -->
-        <section class="projects-section" id="projects">
-            <div class="section-title">
-                <h2>Projetos em Destaque</h2>
-                <p>Soluções reais utilizando as melhores práticas de Data Engineering e AI</p>
-            </div>
-
-            <div class="projects-grid">
-                <!-- Project 1 -->
-                <div class="project-card">
-                    <div class="project-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3>BANVIC Analytics Project</h3>
-                    <p>
-                        Análise detalhada de dados empresariais utilizando Modern Data Stack. 
-                        Implementação de pipeline ETL completo com dbt, transformações de dados 
-                        e dashboards analíticos para tomada de decisão estratégica.
-                    </p>
-                    <div class="tech-stack">
-                        <span class="tech-tag">dbt</span>
-                        <span class="tech-tag">SQL</span>
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">Modern Data Stack</span>
-                    </div>
-                    <a href="https://github.com/Gabriel-boop-deep/BANVIC_ANALYTICS_PROJECT" target="_blank" class="project-link">
-                        Ver no GitHub <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-
-                <!-- Project 2 -->
-                <div class="project-card">
-                    <div class="project-icon">
-                        <i class="fas fa-brain"></i>
-                    </div>
-                    <h3>Classificação de Imagens CNN</h3>
-                    <p>
-                        Modelo de Deep Learning para classificação de imagens usando Redes Neurais 
-                        Convolucionais (CNN) com TensorFlow. Implementação de arquitetura customizada 
-                        com técnicas de data augmentation e otimização de hiperparâmetros.
-                    </p>
-                    <div class="tech-stack">
-                        <span class="tech-tag">TensorFlow</span>
-                        <span class="tech-tag">Keras</span>
-                        <span class="tech-tag">CNN</span>
-                        <span class="tech-tag">Python</span>
-                    </div>
-                    <a href="https://github.com/Gabriel-boop-deep/Classifica-o-de-Imagens-com-CNN-e-TensorFlow" target="_blank" class="project-link">
-                        Ver no GitHub <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-
-                <!-- Project 3 -->
-                <div class="project-card">
-                    <div class="project-icon">
-                        <i class="fas fa-database"></i>
-                    </div>
-                    <h3>DBT BV Monitoring</h3>
-                    <p>
-                        Sistema de monitoramento e validação de dados usando dbt (data build tool). 
-                        Implementação de testes automatizados, documentação de dados e observabilidade 
-                        de pipelines de dados para garantir qualidade e confiabilidade.
-                    </p>
-                    <div class="tech-stack">
-                        <span class="tech-tag">dbt</span>
-                        <span class="tech-tag">SQL</span>
-                        <span class="tech-tag">Data Quality</span>
-                        <span class="tech-tag">Testing</span>
-                    </div>
-                    <a href="https://github.com/Gabriel-boop-deep/dbt_bv_monitoring" target="_blank" class="project-link">
-                        Ver no GitHub <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Video Section -->
-        <section class="video-section" id="video">
-            <div class="section-title">
-                <h2>Conteúdo em Vídeo</h2>
-                <p>Compartilhando conhecimento e experiências em IA e Data Science</p>
-            </div>
-
-            <div class="video-container">
-                <div class="video-wrapper">
-                    <iframe 
-                        src="https://www.youtube.com/embed/fGLR5h1n2Fk" 
-                        title="Gabriel Nunes - Vídeo sobre IA e Data Science"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen>
-                    </iframe>
-                </div>
-                <div class="video-description">
-                    <h3>Explorando IA e Data Science</h3>
-                    <p>
-                        Neste vídeo, compartilho insights sobre Inteligência Artificial, 
-                        Machine Learning e as melhores práticas em Engenharia de Dados.
-                    </p>
-                    <span class="video-badge">
-                        <i class="fab fa-youtube"></i>
-                        Assista no YouTube
-                    </span>
-                </div>
-            </div>
-        </section>
-
-        <!-- Skills Section -->
-        <section class="skills-section" id="skills">
-            <div class="section-title">
-                <h2>Expertise Técnica</h2>
-                <p>Tecnologias e ferramentas que domino</p>
-            </div>
-
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <span class="skill-icon">🤖</span>
-                    <h3>Machine Learning</h3>
-                    <p>TensorFlow, PyTorch, Scikit-learn</p>
-                </div>
-
-                <div class="skill-card">
-                    <span class="skill-icon">📊</span>
-                    <h3>Data Engineering</h3>
-                    <p>dbt, Airflow, SQL, ETL/ELT</p>
-                </div>
-
-                <div class="skill-card">
-                    <span class="skill-icon">🐍</span>
-                    <h3>Python</h3>
-                    <p>Pandas, NumPy, FastAPI</p>
-                </div>
-
-                <div class="skill-card">
-                    <span class="skill-icon">☁️</span>
-                    <h3>Cloud & DevOps</h3>
-                    <p>Docker, Git, CI/CD</p>
-                </div>
-
-                <div class="skill-card">
-                    <span class="skill-icon">📈</span>
-                    <h3>Data Analytics</h3>
-                    <p>Modern Data Stack, BI</p>
-                </div>
-
-                <div class="skill-card">
-                    <span class="skill-icon">🧠</span>
-                    <h3>Deep Learning</h3>
-                    <p>CNN, RNN, Transfer Learning</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section class="contact-section" id="contact">
-            <h2>Vamos Conversar?</h2>
-            <p>Estou sempre aberto a novos projetos e oportunidades de colaboração</p>
-            
-            <div class="social-links">
-                <a href="https://www.linkedin.com/in/gabriel-nunes-barbosa-nogueira/" target="_blank" class="social-btn">
-                    <i class="fab fa-linkedin"></i>
-                </a>
-                <a href="https://github.com/Gabriel-boop-deep/" target="_blank" class="social-btn">
-                    <i class="fab fa-github"></i>
-                </a>
-                <a href="mailto:gabrielnbn@hotmail.com?subject=Oportunidade%20de%20Colaboração%20-%20Contato%20via%20Portfólio&body=Olá%20Gabriel%2C%0A%0AVisitei%20seu%20portfólio%20e%20fiquei%20impressionado%20com%20seus%20projetos%20em%20AI%20e%20Data%20Engineering.%0A%0AGostaria%20de%20conversar%20sobre%3A%0A%0A%5BDescreva%20aqui%20o%20motivo%20do%20contato%5D%0A%0AAguardo%20seu%20retorno!%0A%0AAtenciosamente%2C%0A%5BSeu%20nome%5D" class="social-btn">
-                    <i class="fas fa-envelope"></i>
-                </a>
-            </div>
-        </section>
-
-        <!-- Footer -->
-        <footer>
-            <p>&copy; 2025 Gabriel Nunes. Desenvolvido com 💙 e muita cafeína ☕</p>
-        </footer>
-    </div>
-</body>
-</html>
