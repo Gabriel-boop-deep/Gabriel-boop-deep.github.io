@@ -1,11 +1,32 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import ParticlesBackground from "@/components/portfolio/ParticlesBackground";
+import GradientOrbs from "@/components/portfolio/GradientOrbs";
+import Navbar from "@/components/portfolio/Navbar";
+import HeroSection from "@/components/portfolio/HeroSection";
+import ProjectsSection from "@/components/portfolio/ProjectsSection";
+import VideoSection from "@/components/portfolio/VideoSection";
+import SkillsSection from "@/components/portfolio/SkillsSection";
+import ContactSection from "@/components/portfolio/ContactSection";
+import Footer from "@/components/portfolio/Footer";
 
 const Index = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
+    <div className="min-h-screen bg-background relative overflow-x-hidden">
+      {/* Background Effects */}
+      <GradientOrbs />
+      <ParticlesBackground />
+      <div className="fixed inset-0 grid-pattern pointer-events-none z-[1]" />
+
+      {/* Content */}
+      <div className="relative z-10">
+        <Navbar />
+        <main>
+          <HeroSection />
+          <ProjectsSection />
+          <VideoSection />
+          <SkillsSection />
+          <ContactSection />
+        </main>
+        <Footer />
       </div>
     </div>
   );
