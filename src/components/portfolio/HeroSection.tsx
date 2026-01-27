@@ -1,10 +1,11 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Download, Github, Linkedin, Mail } from "lucide-react";
+import { ArrowRight, Github, Linkedin, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import profileImage from "@/assets/profile.jpeg";
 
 const stats = [
   { number: "3+", label: "Anos Experiência" },
-  { number: "15+", label: "Projetos" },
+  { number: "20+", label: "Projetos" },
   { number: "100%", label: "Dedicação" },
 ];
 
@@ -47,7 +48,7 @@ const HeroSection = () => {
               transition={{ delay: 0.6 }}
               className="text-xl md:text-2xl text-primary font-light mb-6"
             >
-              AI Specialist & Data Engineer
+              Desenvolvedor Full-Stack & AI Specialist
             </motion.p>
 
             <motion.p
@@ -56,9 +57,10 @@ const HeroSection = () => {
               transition={{ delay: 0.7 }}
               className="text-muted-foreground text-lg mb-8 max-w-xl mx-auto lg:mx-0"
             >
-              Especializado em <span className="text-primary">Inteligência Artificial</span>, 
-              Machine Learning e <span className="text-secondary">Engenharia de Dados</span>. 
-              Transformando dados em insights acionáveis e criando soluções que impactam negócios.
+              Transformo sua visão em <span className="text-primary">sites profissionais</span> que 
+              convertem visitantes em clientes. Especializado em criar soluções digitais de alto impacto 
+              para <span className="text-secondary">qualquer tipo de negócio</span> — do pequeno empreendedor 
+              às grandes empresas. Seu sucesso online começa aqui.
             </motion.p>
 
             {/* Stats */}
@@ -124,7 +126,7 @@ const HeroSection = () => {
               className="flex gap-4 mt-8 justify-center lg:justify-start"
             >
               {[
-                { icon: Github, href: "https://github.com/Gabriel-Nunes-dev", label: "GitHub" },
+                { icon: Github, href: "https://github.com/Nuono-Cyber", label: "GitHub" },
                 { icon: Linkedin, href: "https://www.linkedin.com/in/gabriel-nunes-54a56b219/", label: "LinkedIn" },
               ].map((social) => (
                 <motion.a
@@ -165,8 +167,11 @@ const HeroSection = () => {
               <div className="relative w-80 h-80 md:w-96 md:h-96">
                 <div className="absolute inset-0 rounded-3xl border-gradient p-1">
                   <div className="w-full h-full rounded-3xl bg-gradient-to-br from-muted to-background flex items-center justify-center overflow-hidden">
-                    {/* Profile placeholder with initials */}
-                    <div className="text-8xl font-bold text-gradient">GN</div>
+                    <img 
+                      src={profileImage} 
+                      alt="Gabriel Nunes - Desenvolvedor Full-Stack" 
+                      className="w-full h-full object-cover object-top"
+                    />
                   </div>
                 </div>
 
@@ -182,14 +187,14 @@ const HeroSection = () => {
                   transition={{ duration: 3, repeat: Infinity }}
                   className="absolute -top-6 -right-6 px-4 py-2 rounded-full glass-strong text-sm font-medium"
                 >
-                  🤖 AI Engineer
+                  💻 Web Developer
                 </motion.div>
                 <motion.div
                   animate={{ y: [0, 10, 0] }}
                   transition={{ duration: 4, repeat: Infinity }}
                   className="absolute -bottom-6 -left-6 px-4 py-2 rounded-full glass-strong text-sm font-medium"
                 >
-                  📊 Data Expert
+                  🤖 AI Specialist
                 </motion.div>
               </div>
             </div>

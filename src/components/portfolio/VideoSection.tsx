@@ -34,8 +34,8 @@ const VideoSection = () => {
           <div className="relative rounded-2xl overflow-hidden glow-primary">
             <div className="aspect-video bg-muted">
               <iframe
-                src="https://www.youtube.com/embed/uxL5kWGFRcE"
-                title="Gabriel Nunes - AI & Data Science"
+                src="https://www.youtube.com/embed/fGLR5h1n2Fk"
+                title="Gabriel Nunes - Desenvolvimento Web & IA"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
                 className="w-full h-full"
@@ -46,11 +46,11 @@ const VideoSection = () => {
           {/* Video info */}
           <div className="mt-8 text-center">
             <h3 className="text-2xl font-bold text-primary mb-3">
-              Explorando IA e Data Science
+              Conheça Meu Trabalho
             </h3>
             <p className="text-muted-foreground max-w-2xl mx-auto mb-6">
-              Neste vídeo, compartilho insights sobre Inteligência Artificial, 
-              Machine Learning e as melhores práticas em Engenharia de Dados.
+              Descubra como posso transformar sua ideia em um site profissional que 
+              atrai clientes e gera resultados. Do conceito à entrega, cuido de tudo para você.
             </p>
             <motion.a
               href="https://www.youtube.com/@GabrielNunes-rq1kl"
