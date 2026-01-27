@@ -1,30 +1,48 @@
 import { motion } from "framer-motion";
-import { ArrowUpRight, Database, Brain, BarChart3 } from "lucide-react";
+import { ArrowUpRight, Database, Brain, BarChart3, Globe, Sparkles } from "lucide-react";
 
 const projects = [
   {
+    icon: Globe,
+    title: "Velotech Bike Yourself",
+    description: "Site profissional completo para loja de bicicletas. Design moderno e responsivo com catálogo de produtos, sistema de contato e integração com redes sociais. Uma presença digital que impulsiona vendas.",
+    tags: ["React", "TypeScript", "Tailwind", "UI/UX"],
+    link: "https://github.com/Nuono-Cyber/velotechbikeyourself",
+    color: "primary",
+    featured: true,
+  },
+  {
+    icon: Sparkles,
+    title: "Insight Creator AI",
+    description: "Plataforma inovadora de criação de conteúdo potencializada por Inteligência Artificial. Automatize a geração de textos, imagens e insights para suas campanhas de marketing digital.",
+    tags: ["IA", "React", "OpenAI", "Full-Stack"],
+    link: "https://github.com/Nuono-Cyber/insight-creator-ai",
+    color: "secondary",
+    featured: true,
+  },
+  {
     icon: Database,
     title: "BANVIC Analytics Project",
-    description: "Análise detalhada de dados empresariais utilizando Modern Data Stack. Implementação de pipeline ETL completo com dbt, transformações de dados e dashboards analíticos para tomada de decisão estratégica.",
-    tags: ["dbt", "SQL", "Python", "Modern Data Stack"],
+    description: "Análise detalhada de dados empresariais utilizando Modern Data Stack. Pipeline ETL completo com dbt, transformações de dados e dashboards analíticos para tomada de decisão estratégica.",
+    tags: ["dbt", "SQL", "Python", "Data Stack"],
     link: "https://github.com/Gabriel-Nunes-dev/BANVIC_Analytics_Project",
-    color: "primary",
+    color: "accent",
   },
   {
     icon: Brain,
     title: "Classificação de Imagens CNN",
-    description: "Modelo de Deep Learning para classificação de imagens usando Redes Neurais Convolucionais (CNN) com TensorFlow. Implementação de arquitetura customizada com técnicas de data augmentation e otimização de hiperparâmetros.",
+    description: "Modelo de Deep Learning para classificação de imagens usando Redes Neurais Convolucionais (CNN) com TensorFlow. Arquitetura customizada com data augmentation e otimização avançada.",
     tags: ["TensorFlow", "Keras", "CNN", "Python"],
     link: "https://github.com/Gabriel-Nunes-dev/image_classification_cnn",
-    color: "secondary",
+    color: "primary",
   },
   {
     icon: BarChart3,
     title: "DBT BV Monitoring",
-    description: "Sistema de monitoramento e validação de dados usando dbt (data build tool). Implementação de testes automatizados, documentação de dados e observabilidade de pipelines de dados para garantir qualidade e confiabilidade.",
+    description: "Sistema de monitoramento e validação de dados usando dbt. Testes automatizados, documentação de dados e observabilidade de pipelines para garantir qualidade e confiabilidade.",
     tags: ["dbt", "SQL", "Data Quality", "Testing"],
     link: "https://github.com/Gabriel-Nunes-dev/dbt_bv_monitoring",
-    color: "accent",
+    color: "secondary",
   },
 ];
 
@@ -55,6 +73,7 @@ const ProjectsSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
+              className={project.featured ? "md:col-span-1" : ""}
             >
               <motion.a
                 href={project.link}
@@ -63,10 +82,13 @@ const ProjectsSection = () => {
                 whileHover={{ y: -10 }}
                 className="block h-full"
               >
-                <div className="h-full glass rounded-2xl p-6 hover:border-primary/50 transition-all duration-300 group relative overflow-hidden">
-                  {/* Gradient overlay on hover */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  
+                <div className={`h-full glass rounded-2xl p-6 hover:border-primary/50 transition-all duration-300 group relative overflow-hidden ${project.featured ? 'border-2 border-primary/30' : ''}`}>
+                  {/* Featured badge */}
+                  {project.featured && (
+                    <div className="absolute top-4 right-4 px-2 py-1 rounded-full bg-gradient-primary text-[10px] font-bold text-primary-foreground">
+                      EM DESTAQUE
+                    </div>
+                  )}
                   {/* Scan line effect */}
                   <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-primary to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-[scan_2s_linear_infinite]" />
 
