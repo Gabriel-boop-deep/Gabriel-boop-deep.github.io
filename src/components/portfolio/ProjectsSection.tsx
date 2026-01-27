@@ -25,7 +25,7 @@ const projects = [
     title: "BANVIC Analytics Project",
     description: "Análise detalhada de dados empresariais utilizando Modern Data Stack. Pipeline ETL completo com dbt, transformações de dados e dashboards analíticos para tomada de decisão estratégica.",
     tags: ["dbt", "SQL", "Python", "Data Stack"],
-    link: "https://github.com/Gabriel-Nunes-dev/BANVIC_Analytics_Project",
+    link: "https://github.com/Gabriel-boop-deep/BANVIC_ANALYTICS_PROJECT",
     color: "accent",
   },
   {
@@ -33,15 +33,15 @@ const projects = [
     title: "Classificação de Imagens CNN",
     description: "Modelo de Deep Learning para classificação de imagens usando Redes Neurais Convolucionais (CNN) com TensorFlow. Arquitetura customizada com data augmentation e otimização avançada.",
     tags: ["TensorFlow", "Keras", "CNN", "Python"],
-    link: "https://github.com/Gabriel-Nunes-dev/image_classification_cnn",
+    link: "https://github.com/Gabriel-boop-deep/Classifica-o-de-Imagens-com-CNN-e-TensorFlow",
     color: "primary",
   },
   {
     icon: BarChart3,
-    title: "DBT BV Monitoring",
-    description: "Sistema de monitoramento e validação de dados usando dbt. Testes automatizados, documentação de dados e observabilidade de pipelines para garantir qualidade e confiabilidade.",
+    title: "Academy DBT",
+    description: "Projeto educacional de Data Engineering usando dbt. Testes automatizados, documentação de dados e observabilidade de pipelines para garantir qualidade e confiabilidade.",
     tags: ["dbt", "SQL", "Data Quality", "Testing"],
-    link: "https://github.com/Gabriel-Nunes-dev/dbt_bv_monitoring",
+    link: "https://github.com/Gabriel-boop-deep/academy-dbt",
     color: "secondary",
   },
 ];
