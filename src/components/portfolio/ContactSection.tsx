@@ -3,18 +3,18 @@ import { Github, Linkedin, Mail, Send, Youtube } from "lucide-react";
 
 const socialLinks = [
   {
-    icon: Github,
-    href: "https://github.com/Nuono-Cyber",
-    label: "GitHub",
-  },
-  {
     icon: Linkedin,
-    href: "https://www.linkedin.com/in/gabriel-nunes-54a56b219/",
+    href: "https://www.linkedin.com/in/gabriel-nunes-barbosa-nogueira/",
     label: "LinkedIn",
   },
   {
+    icon: Github,
+    href: "https://github.com/Gabriel-boop-deep",
+    label: "GitHub",
+  },
+  {
     icon: Youtube,
-    href: "https://www.youtube.com/@GabrielNunes-rq1kl",
+    href: "https://www.youtube.com/channel/UCooENE7KK2TEgCoqGBajBzA",
     label: "YouTube",
   },
   {
