@@ -20,14 +20,14 @@ const VideoSection = () => {
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-8">
+        <div className="grid lg:grid-cols-3 gap-6">
           {/* Main Video */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="glass rounded-3xl p-6 relative overflow-hidden"
+            className="glass rounded-3xl p-5 relative overflow-hidden"
           >
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary to-transparent animate-[scan_3s_linear_infinite]" />
 
@@ -43,12 +43,12 @@ const VideoSection = () => {
               </div>
             </div>
 
-            <div className="mt-6 text-center">
-              <h3 className="text-xl font-bold text-primary mb-2">
+            <div className="mt-5 text-center">
+              <h3 className="text-lg font-bold text-primary mb-2">
                 Conheça Meu Trabalho
               </h3>
-              <p className="text-muted-foreground text-sm mb-4">
-                Descubra como transformo ideias em sites profissionais que geram resultados.
+              <p className="text-muted-foreground text-xs mb-4">
+                Descubra como transformo ideias em sites profissionais.
               </p>
               <motion.a
                 href="https://www.youtube.com/@GabrielNunes-rq1kl"
@@ -56,7 +56,7 @@ const VideoSection = () => {
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-primary rounded-full font-semibold text-primary-foreground text-sm"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-primary rounded-full font-semibold text-primary-foreground text-xs"
               >
                 <Youtube className="w-4 h-4" />
                 Canal no YouTube
@@ -70,11 +70,11 @@ const VideoSection = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="glass rounded-3xl p-6 relative overflow-hidden border-2 border-yellow-500/30"
+            className="glass rounded-3xl p-5 relative overflow-hidden border-2 border-yellow-500/30"
           >
             {/* Trophy badge */}
-            <div className="absolute top-4 right-4 z-10 flex items-center gap-2 px-3 py-1.5 rounded-full bg-gradient-to-r from-yellow-500 to-amber-600 text-black text-xs font-bold">
-              <Trophy className="w-4 h-4" />
+            <div className="absolute top-3 right-3 z-10 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-gradient-to-r from-yellow-500 to-amber-600 text-black text-[10px] font-bold">
+              <Trophy className="w-3 h-3" />
               CASE DE SUCESSO
             </div>
 
@@ -92,12 +92,12 @@ const VideoSection = () => {
               </div>
             </div>
 
-            <div className="mt-6 text-center">
-              <h3 className="text-xl font-bold mb-2">
+            <div className="mt-5 text-center">
+              <h3 className="text-lg font-bold mb-2">
                 <span className="text-yellow-500">Velotech</span> Bike Yourself
               </h3>
-              <p className="text-muted-foreground text-sm mb-4">
-                Site profissional para loja de bicicletas. Um projeto que representa excelência em design e funcionalidade.
+              <p className="text-muted-foreground text-xs mb-4">
+                Site profissional para loja de bicicletas.
               </p>
               <motion.a
                 href="https://github.com/Nuono-Cyber/velotechbikeyourself"
@@ -105,10 +105,59 @@ const VideoSection = () => {
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-yellow-500 to-amber-600 rounded-full font-semibold text-black text-sm"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-yellow-500 to-amber-600 rounded-full font-semibold text-black text-xs"
               >
                 <Play className="w-4 h-4" />
-                Ver Projeto Completo
+                Ver Projeto
+              </motion.a>
+            </div>
+          </motion.div>
+
+          {/* Velotech Part 2 */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="glass rounded-3xl p-5 relative overflow-hidden border-2 border-yellow-500/30"
+          >
+            {/* Continuation badge */}
+            <div className="absolute top-3 right-3 z-10 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-gradient-to-r from-amber-600 to-orange-600 text-black text-[10px] font-bold">
+              <Play className="w-3 h-3" />
+              PARTE 2
+            </div>
+
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-amber-500 to-transparent animate-[scan_3s_linear_infinite]" />
+
+            <div className="relative rounded-2xl overflow-hidden" style={{ boxShadow: '0 0 40px rgba(234, 179, 8, 0.25)' }}>
+              <div className="aspect-video bg-muted">
+                <iframe
+                  src="https://www.youtube.com/embed/IE0kMwtyOfg"
+                  title="Velotech Bike Yourself - Parte 2"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="w-full h-full"
+                />
+              </div>
+            </div>
+
+            <div className="mt-5 text-center">
+              <h3 className="text-lg font-bold mb-2">
+                <span className="text-amber-500">Velotech</span> Continuação
+              </h3>
+              <p className="text-muted-foreground text-xs mb-4">
+                Desenvolvimento e finalização do projeto.
+              </p>
+              <motion.a
+                href="https://youtu.be/IE0kMwtyOfg"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-amber-600 to-orange-600 rounded-full font-semibold text-black text-xs"
+              >
+                <Youtube className="w-4 h-4" />
+                Assistir Parte 2
               </motion.a>
             </div>
           </motion.div>
