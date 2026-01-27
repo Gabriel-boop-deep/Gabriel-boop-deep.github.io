@@ -1,10 +1,10 @@
 import { motion } from "framer-motion";
-import { Github, Linkedin, Mail, Send } from "lucide-react";
+import { Github, Linkedin, Mail, Send, Youtube } from "lucide-react";
 
 const socialLinks = [
   {
     icon: Github,
-    href: "https://github.com/Gabriel-Nunes-dev",
+    href: "https://github.com/Nuono-Cyber",
     label: "GitHub",
   },
   {
@@ -13,8 +13,13 @@ const socialLinks = [
     label: "LinkedIn",
   },
   {
+    icon: Youtube,
+    href: "https://www.youtube.com/@GabrielNunes-rq1kl",
+    label: "YouTube",
+  },
+  {
     icon: Mail,
-    href: "mailto:gabriellnunesdeveloper@hotmail.com?subject=Oportunidade%20de%20Colaboração%20-%20Contato%20via%20Portfólio&body=Olá%20Gabriel%2C%0A%0AVisitei%20seu%20portfólio%20e%20fiquei%20impressionado%20com%20seus%20projetos%20em%20AI%20e%20Data%20Engineering.%0A%0AGostaria%20de%20conversar%20sobre%3A%0A%0A%5BDescreva%20aqui%20o%20motivo%20do%20contato%5D%0A%0AAguardo%20seu%20retorno!%0A%0AAtenciosamente%2C%0A%5BSeu%20nome%5D",
+    href: "mailto:gabrielnbn@hotmail.com?subject=Orçamento%20-%20Desenvolvimento%20Web&body=Olá%20Gabriel%2C%0A%0AVisitei%20seu%20portfólio%20e%20gostaria%20de%20um%20orçamento%20para%3A%0A%0A%5BDescreva%20seu%20projeto%20aqui%5D%0A%0AAguardo%20seu%20retorno!%0A%0AAtenciosamente%2C%0A%5BSeu%20nome%5D",
     label: "Email",
   },
 ];
@@ -47,11 +52,11 @@ const ContactSection = () => {
             </motion.div>
 
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Vamos <span className="text-gradient">Conversar</span>?
+              Pronto para <span className="text-gradient">Transformar</span> seu Negócio?
             </h2>
             <p className="text-muted-foreground text-lg mb-10 max-w-xl mx-auto">
-              Estou sempre aberto a novos projetos e oportunidades de colaboração. 
-              Entre em contato e vamos criar algo incrível juntos!
+              Solicite um orçamento gratuito e descubra como posso criar o site perfeito 
+              para impulsionar seu negócio. Resposta em até 24 horas!
             </p>
 
             {/* Social Links */}
@@ -81,14 +86,22 @@ const ContactSection = () => {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.6 }}
-              className="mt-10"
+              className="mt-10 space-y-2"
             >
               <a
-                href="mailto:gabriellnunesdeveloper@hotmail.com"
+                href="mailto:gabrielnbn@hotmail.com"
                 className="inline-flex items-center gap-2 text-primary hover:text-foreground transition-colors font-medium"
               >
                 <Mail className="w-5 h-5" />
-                gabriellnunesdeveloper@hotmail.com
+                gabrielnbn@hotmail.com
+              </a>
+              <br />
+              <a
+                href="mailto:nunesnbnxn@gmail.com"
+                className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors text-sm"
+              >
+                <Mail className="w-4 h-4" />
+                nunesnbnxn@gmail.com
               </a>
             </motion.div>
           </div>
