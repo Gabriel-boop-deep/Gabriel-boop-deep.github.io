@@ -7,6 +7,7 @@ import VideoSection from "@/components/portfolio/VideoSection";
 import SkillsSection from "@/components/portfolio/SkillsSection";
 import ContactSection from "@/components/portfolio/ContactSection";
 import Footer from "@/components/portfolio/Footer";
+import ChatBot from "@/components/portfolio/ChatBot";
 
 const Index = () => {
   return (
@@ -28,6 +29,9 @@ const Index = () => {
         </main>
         <Footer />
       </div>
+
+      {/* ChatBot */}
+      <ChatBot />
     </div>
   );
 };
