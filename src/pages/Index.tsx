@@ -2,7 +2,9 @@ import ParticlesBackground from "@/components/portfolio/ParticlesBackground";
 import GradientOrbs from "@/components/portfolio/GradientOrbs";
 import Navbar from "@/components/portfolio/Navbar";
 import HeroSection from "@/components/portfolio/HeroSection";
+import BenefitsSection from "@/components/portfolio/BenefitsSection";
 import ProjectsSection from "@/components/portfolio/ProjectsSection";
+import TestimonialsSection from "@/components/portfolio/TestimonialsSection";
 import VideoSection from "@/components/portfolio/VideoSection";
 import SkillsSection from "@/components/portfolio/SkillsSection";
 import ContactSection from "@/components/portfolio/ContactSection";
@@ -22,7 +24,9 @@ const Index = () => {
         <Navbar />
         <main>
           <HeroSection />
+          <BenefitsSection />
           <ProjectsSection />
+          <TestimonialsSection />
           <VideoSection />
           <SkillsSection />
           <ContactSection />

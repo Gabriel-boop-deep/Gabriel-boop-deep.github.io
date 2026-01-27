@@ -1,18 +1,31 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Github, Linkedin, Mail } from "lucide-react";
+import { ArrowRight, CheckCircle2, Zap, Clock, TrendingUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import profileImage from "@/assets/profile.jpeg";
 
-const stats = [
-  { number: "3+", label: "Anos Experiência" },
-  { number: "20+", label: "Projetos" },
-  { number: "100%", label: "Dedicação" },
+const urgencyPoints = [
+  { icon: CheckCircle2, text: "Sites que vendem de verdade" },
+  { icon: CheckCircle2, text: "Entrega em até 7 dias" },
+  { icon: CheckCircle2, text: "Suporte pós-entrega" },
 ];
 
 const HeroSection = () => {
   return (
-    <section id="hero" className="min-h-screen flex items-center pt-24 pb-12">
-      <div className="max-w-7xl mx-auto px-4 w-full">
+    <section id="hero" className="min-h-screen flex items-center pt-20 pb-12 relative overflow-hidden">
+      {/* Urgency banner */}
+      <motion.div
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        className="absolute top-16 left-0 right-0 bg-gradient-to-r from-primary via-secondary to-primary bg-[length:200%_100%] animate-gradient py-2 z-40"
+      >
+        <div className="max-w-7xl mx-auto px-4 flex items-center justify-center gap-2 text-primary-foreground font-semibold text-sm">
+          <Zap className="w-4 h-4" />
+          <span>🔥 VAGAS LIMITADAS — Apenas 3 projetos por mês para garantir qualidade máxima</span>
+          <Zap className="w-4 h-4" />
+        </div>
+      </motion.div>
+
+      <div className="max-w-7xl mx-auto px-4 w-full pt-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Content */}
           <motion.div
@@ -21,87 +34,112 @@ const HeroSection = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-center lg:text-left"
           >
+            {/* Trust badge */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-6"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border-green-500/50 mb-6"
             >
-              <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-              <span className="text-sm text-muted-foreground">Disponível para novos projetos</span>
+              <span className="w-3 h-3 rounded-full bg-green-400 animate-pulse" />
+              <span className="text-sm font-medium text-green-400">✓ 1 vaga disponível este mês</span>
             </motion.div>
 
+            {/* Main headline - Problem + Solution */}
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
-              className="text-5xl md:text-6xl lg:text-7xl font-bold mb-4"
+              className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
             >
-              <span className="text-gradient">Gabriel</span>
+              Seu negócio merece um
               <br />
-              <span className="text-foreground">Nunes</span>
+              <span className="text-gradient">site que vende.</span>
+              <br />
+              <span className="text-2xl md:text-3xl text-muted-foreground font-normal">
+                Não apenas um que "existe".
+              </span>
             </motion.h1>
 
+            {/* Value proposition */}
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6 }}
-              className="text-xl md:text-2xl text-primary font-light mb-6"
+              className="text-lg md:text-xl text-muted-foreground mb-8 max-w-xl mx-auto lg:mx-0"
             >
-              Desenvolvedor Full-Stack & AI Specialist
+              Crio <span className="text-primary font-semibold">sites profissionais</span> que transformam 
+              visitantes em clientes pagantes. Design moderno, rápido, otimizado para 
+              <span className="text-secondary font-semibold"> converter e vender</span> — não apenas para "ficar bonito".
             </motion.p>
 
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7 }}
-              className="text-muted-foreground text-lg mb-8 max-w-xl mx-auto lg:mx-0"
-            >
-              Transformo sua visão em <span className="text-primary">sites profissionais</span> que 
-              convertem visitantes em clientes. Especializado em criar soluções digitais de alto impacto 
-              para <span className="text-secondary">qualquer tipo de negócio</span> — do pequeno empreendedor 
-              às grandes empresas. Seu sucesso online começa aqui.
-            </motion.p>
-
-            {/* Stats */}
+            {/* Urgency points */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8 }}
-              className="flex justify-center lg:justify-start gap-8 mb-10"
+              transition={{ delay: 0.7 }}
+              className="flex flex-col gap-3 mb-8"
             >
-              {stats.map((stat, index) => (
+              {urgencyPoints.map((point, index) => (
+                <motion.div
+                  key={point.text}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.8 + index * 0.1 }}
+                  className="flex items-center gap-3"
+                >
+                  <point.icon className="w-5 h-5 text-green-400 flex-shrink-0" />
+                  <span className="text-foreground font-medium">{point.text}</span>
+                </motion.div>
+              ))}
+            </motion.div>
+
+            {/* Stats with social proof */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.9 }}
+              className="flex justify-center lg:justify-start gap-6 md:gap-10 mb-10"
+            >
+              {[
+                { number: "20+", label: "Projetos Entregues", icon: TrendingUp },
+                { number: "100%", label: "Clientes Satisfeitos", icon: CheckCircle2 },
+                { number: "7 dias", label: "Entrega Rápida", icon: Clock },
+              ].map((stat, index) => (
                 <motion.div
                   key={stat.label}
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
-                  transition={{ delay: 0.9 + index * 0.1, type: "spring" }}
+                  transition={{ delay: 1 + index * 0.1, type: "spring" }}
                   className="text-center"
                 >
-                  <span className="text-3xl md:text-4xl font-bold text-gradient block">
-                    {stat.number}
-                  </span>
-                  <span className="text-xs md:text-sm text-muted-foreground uppercase tracking-wider">
+                  <div className="flex items-center justify-center gap-1 mb-1">
+                    <stat.icon className="w-4 h-4 text-primary" />
+                    <span className="text-2xl md:text-3xl font-bold text-gradient">
+                      {stat.number}
+                    </span>
+                  </div>
+                  <span className="text-xs text-muted-foreground uppercase tracking-wider">
                     {stat.label}
                   </span>
                 </motion.div>
               ))}
             </motion.div>
 
-            {/* CTA Buttons */}
+            {/* CTA Buttons - Main conversion */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1 }}
+              transition={{ delay: 1.1 }}
               className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
             >
               <Button
                 asChild
                 size="lg"
-                className="bg-gradient-primary hover:opacity-90 text-primary-foreground font-semibold rounded-full px-8 glow-primary"
+                className="bg-gradient-primary hover:opacity-90 text-primary-foreground font-bold rounded-full px-8 py-6 text-lg glow-primary animate-pulse-glow"
               >
-                <a href="#projetos">
-                  Ver Projetos
+                <a href="#contato">
+                  QUERO MEU SITE AGORA
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </a>
               </Button>
@@ -109,42 +147,27 @@ const HeroSection = () => {
                 asChild
                 variant="outline"
                 size="lg"
-                className="rounded-full px-8 border-primary/30 hover:border-primary hover:bg-primary/10"
+                className="rounded-full px-8 py-6 border-primary/50 hover:border-primary hover:bg-primary/10 font-semibold"
               >
-                <a href="#contato">
-                  <Mail className="mr-2 h-5 w-5" />
-                  Contato
+                <a href="#projetos">
+                  Ver Resultados Reais
                 </a>
               </Button>
             </motion.div>
 
-            {/* Social Links */}
-            <motion.div
+            {/* Micro-commitment */}
+            <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 1.2 }}
-              className="flex gap-4 mt-8 justify-center lg:justify-start"
+              transition={{ delay: 1.3 }}
+              className="text-sm text-muted-foreground mt-4 flex items-center gap-2 justify-center lg:justify-start"
             >
-              {[
-                { icon: Github, href: "https://github.com/Nuono-Cyber", label: "GitHub" },
-                { icon: Linkedin, href: "https://www.linkedin.com/in/gabriel-nunes-54a56b219/", label: "LinkedIn" },
-              ].map((social) => (
-                <motion.a
-                  key={social.label}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ scale: 1.1, y: -3 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="w-12 h-12 rounded-full glass flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/50 transition-colors"
-                >
-                  <social.icon size={20} />
-                </motion.a>
-              ))}
-            </motion.div>
+              <CheckCircle2 className="w-4 h-4 text-green-400" />
+              Orçamento gratuito • Sem compromisso • Resposta em 24h
+            </motion.p>
           </motion.div>
 
-          {/* Profile Image */}
+          {/* Profile Image with trust elements */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
@@ -152,51 +175,56 @@ const HeroSection = () => {
             className="relative flex justify-center lg:justify-end"
           >
             <div className="relative">
-              {/* Decorative elements */}
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                className="absolute inset-0 rounded-3xl border-2 border-dashed border-primary/30"
-                style={{ transform: "scale(1.1)" }}
-              />
-              
               {/* Glow effect */}
-              <div className="absolute inset-0 rounded-3xl bg-gradient-primary opacity-20 blur-3xl" />
+              <div className="absolute inset-0 rounded-3xl bg-gradient-primary opacity-30 blur-3xl animate-pulse" />
               
               {/* Main frame */}
-              <div className="relative w-80 h-80 md:w-96 md:h-96">
+              <div className="relative w-72 h-72 md:w-80 md:h-80">
                 <div className="absolute inset-0 rounded-3xl border-gradient p-1">
                   <div className="w-full h-full rounded-3xl bg-gradient-to-br from-muted to-background flex items-center justify-center overflow-hidden">
                     <img 
                       src={profileImage} 
-                      alt="Gabriel Nunes - Desenvolvedor Full-Stack" 
+                      alt="Gabriel Nunes - Desenvolvedor Web Profissional" 
                       className="w-full h-full object-cover object-top"
                     />
                   </div>
                 </div>
 
                 {/* Corner decorations */}
-                <div className="absolute -top-4 -left-4 w-16 h-16 border-l-2 border-t-2 border-primary rounded-tl-lg" />
-                <div className="absolute -top-4 -right-4 w-16 h-16 border-r-2 border-t-2 border-primary rounded-tr-lg" />
-                <div className="absolute -bottom-4 -left-4 w-16 h-16 border-l-2 border-b-2 border-primary rounded-bl-lg" />
-                <div className="absolute -bottom-4 -right-4 w-16 h-16 border-r-2 border-b-2 border-primary rounded-br-lg" />
+                <div className="absolute -top-3 -left-3 w-12 h-12 border-l-2 border-t-2 border-primary rounded-tl-lg" />
+                <div className="absolute -top-3 -right-3 w-12 h-12 border-r-2 border-t-2 border-primary rounded-tr-lg" />
+                <div className="absolute -bottom-3 -left-3 w-12 h-12 border-l-2 border-b-2 border-primary rounded-bl-lg" />
+                <div className="absolute -bottom-3 -right-3 w-12 h-12 border-r-2 border-b-2 border-primary rounded-br-lg" />
 
-                {/* Floating badges */}
+                {/* Floating badge - Results */}
                 <motion.div
-                  animate={{ y: [0, -10, 0] }}
+                  animate={{ y: [0, -8, 0] }}
                   transition={{ duration: 3, repeat: Infinity }}
-                  className="absolute -top-6 -right-6 px-4 py-2 rounded-full glass-strong text-sm font-medium"
+                  className="absolute -top-4 -right-4 px-4 py-2 rounded-xl glass-strong text-sm font-bold border border-green-500/30"
                 >
-                  💻 Web Developer
+                  <span className="text-green-400">✓</span> Especialista Web
                 </motion.div>
+                
+                {/* Floating badge - Trust */}
                 <motion.div
-                  animate={{ y: [0, 10, 0] }}
+                  animate={{ y: [0, 8, 0] }}
                   transition={{ duration: 4, repeat: Infinity }}
-                  className="absolute -bottom-6 -left-6 px-4 py-2 rounded-full glass-strong text-sm font-medium"
+                  className="absolute -bottom-4 -left-4 px-4 py-2 rounded-xl glass-strong text-sm font-bold border border-primary/30"
                 >
-                  🤖 AI Specialist
+                  <span className="text-primary">⚡</span> Entrega Rápida
                 </motion.div>
               </div>
+
+              {/* Name tag */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1 }}
+                className="absolute -bottom-12 left-1/2 -translate-x-1/2 text-center"
+              >
+                <h2 className="text-xl font-bold text-gradient">Gabriel Nunes</h2>
+                <p className="text-sm text-muted-foreground">Web Developer & AI Specialist</p>
+              </motion.div>
             </div>
           </motion.div>
         </div>
