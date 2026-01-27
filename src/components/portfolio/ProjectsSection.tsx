@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowUpRight, Database, Brain, BarChart3, Globe, Sparkles } from "lucide-react";
+import { ArrowUpRight, Database, Brain, BarChart3, Globe } from "lucide-react";
 
 const projects = [
   {
@@ -12,21 +12,13 @@ const projects = [
     featured: true,
   },
   {
-    icon: Sparkles,
-    title: "Insight Creator AI",
-    description: "Plataforma inovadora de criação de conteúdo potencializada por Inteligência Artificial. Automatize a geração de textos, imagens e insights para suas campanhas de marketing digital.",
-    tags: ["IA", "React", "OpenAI", "Full-Stack"],
-    link: "https://github.com/Nuono-Cyber/insight-creator-ai",
-    color: "secondary",
-    featured: true,
-  },
-  {
     icon: Database,
     title: "BANVIC Analytics Project",
     description: "Análise detalhada de dados empresariais utilizando Modern Data Stack. Pipeline ETL completo com dbt, transformações de dados e dashboards analíticos para tomada de decisão estratégica.",
     tags: ["dbt", "SQL", "Python", "Data Stack"],
     link: "https://github.com/Gabriel-boop-deep/BANVIC_ANALYTICS_PROJECT",
     color: "accent",
+    featured: true,
   },
   {
     icon: Brain,
