@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Github, Linkedin, Mail, MessageCircle, Youtube, ArrowRight, CheckCircle2, Clock, Shield, Zap } from "lucide-react";
+import { Github, Linkedin, Mail, MessageCircle, Youtube, ArrowRight, CheckCircle2, Clock, Shield, Zap, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const socialLinks = [
@@ -30,6 +30,10 @@ const guarantees = [
 ];
 
 const ContactSection = () => {
+  const phoneNumber = "5571999428340";
+  const whatsappMessage = encodeURIComponent("Olá Gabriel! Visitei seu portfólio e gostaria de um orçamento para meu projeto.");
+  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${whatsappMessage}`;
+
   return (
     <section id="contato" className="py-24 relative overflow-hidden">
       {/* Animated background */}
@@ -79,13 +83,13 @@ const ContactSection = () => {
               </p>
             </motion.div>
 
-            {/* Main CTA */}
+            {/* Main CTA Buttons */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="flex justify-center mb-8"
+              className="flex flex-col sm:flex-row gap-4 justify-center mb-8"
             >
               <Button
                 asChild
@@ -96,6 +100,17 @@ const ContactSection = () => {
                   <MessageCircle className="mr-2 h-5 w-5" />
                   SOLICITAR ORÇAMENTO GRÁTIS
                   <ArrowRight className="ml-2 h-5 w-5" />
+                </a>
+              </Button>
+              
+              <Button
+                asChild
+                size="lg"
+                className="bg-[#25D366] hover:bg-[#20BA5C] text-white font-bold rounded-full px-10 py-7 text-lg"
+              >
+                <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
+                  <MessageCircle className="mr-2 h-5 w-5" fill="white" />
+                  WhatsApp
                 </a>
               </Button>
             </motion.div>
@@ -144,20 +159,29 @@ const ContactSection = () => {
               ))}
             </div>
 
-            {/* Email display */}
+            {/* Contact Info */}
             <motion.div
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.6 }}
-              className="text-center space-y-2"
+              className="text-center space-y-3"
             >
               <a
                 href="mailto:gabrielnbn@hotmail.com"
-                className="inline-flex items-center gap-2 text-primary hover:text-foreground transition-colors font-medium"
+                className="flex items-center justify-center gap-2 text-primary hover:text-foreground transition-colors font-medium"
               >
                 <Mail className="w-5 h-5" />
                 gabrielnbn@hotmail.com
+              </a>
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 text-green-400 hover:text-foreground transition-colors font-medium"
+              >
+                <Phone className="w-5 h-5" />
+                +55 71 99942-8340
               </a>
             </motion.div>
 

@@ -1,61 +1,58 @@
 import { motion } from "framer-motion";
-import { ExternalLink, Github, ArrowRight, Star } from "lucide-react";
+import { ExternalLink, Github, ArrowRight, Star, Code } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const projects = [
+  {
+    title: "Discorama Insights Hub",
+    description: "Plataforma de análise de dados musicais com insights e visualizações interativas. Dashboard completo para descoberta de padrões.",
+    tags: ["React", "TypeScript", "Data Viz"],
+    image: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600",
+    githubUrl: "https://github.com/Nuono-Cyber/discorama-insights-hub",
+    featured: true,
+    result: "Data Analytics",
+  },
   {
     title: "Velotech Bike Yourself",
     description: "Loja virtual completa para bicicletas com catálogo de produtos, sistema de contato e design focado em conversão.",
     tags: ["React", "Tailwind CSS", "SEO"],
     image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600",
-    liveUrl: "#",
+    githubUrl: "https://github.com/Nuono-Cyber/velotechbikeyourself",
     featured: true,
-    result: "+150% em leads",
+    result: "+150% leads",
   },
   {
-    title: "Dashboard Analytics",
-    description: "Plataforma de visualização de dados com gráficos interativos e relatórios automatizados em tempo real.",
-    tags: ["TypeScript", "Recharts", "Supabase"],
+    title: "BANVIC Analytics",
+    description: "Pipeline de dados completo com dbt e Modern Data Stack. Dashboards analíticos que transformam dados em decisões estratégicas.",
+    tags: ["dbt", "SQL", "Python", "Analytics"],
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600",
-    liveUrl: "#",
-    featured: true,
-    result: "Análise em tempo real",
+    featured: false,
+    result: "Data Driven",
+  },
+  {
+    title: "Classificação CNN",
+    description: "Modelo de Deep Learning para classificação de imagens usando TensorFlow. Alta precisão com arquitetura customizada.",
+    tags: ["TensorFlow", "Python", "CNN", "AI"],
+    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600",
+    featured: false,
+    result: "Machine Learning",
+  },
+  {
+    title: "Academy DBT",
+    description: "Projeto educacional de Data Engineering com testes automatizados e documentação profissional.",
+    tags: ["dbt", "SQL", "Data Quality"],
+    image: "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=600",
+    featured: false,
+    result: "Data Engineering",
   },
   {
     title: "Sistema de Agendamento",
     description: "Aplicação para gestão de agendamentos com calendário integrado, notificações e painel administrativo.",
     tags: ["Next.js", "PostgreSQL", "Auth"],
     image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=600",
-    liveUrl: "#",
     featured: false,
     result: "-70% no-shows",
-  },
-  {
-    title: "E-commerce Moda",
-    description: "Loja online com carrinho de compras, pagamentos integrados e gestão de estoque automatizada.",
-    tags: ["React", "Stripe", "Node.js"],
-    image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600",
-    liveUrl: "#",
-    featured: false,
-    result: "+200% vendas",
-  },
-  {
-    title: "Portal Imobiliário",
-    description: "Plataforma de busca de imóveis com filtros avançados, mapas interativos e sistema de favoritos.",
-    tags: ["React", "Maps API", "MongoDB"],
-    image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600",
-    liveUrl: "#",
-    featured: false,
-    result: "+80% conversão",
-  },
-  {
-    title: "App de Delivery",
-    description: "Aplicativo de pedidos com rastreamento em tempo real, pagamentos e sistema de avaliações.",
-    tags: ["React Native", "Firebase", "Stripe"],
-    image: "https://images.unsplash.com/photo-1526367790999-0150786686a2?w=600",
-    liveUrl: "#",
-    featured: false,
-    result: "5k+ downloads",
   },
 ];
 
@@ -64,13 +61,15 @@ interface PortfolioTabProps {
 }
 
 const PortfolioTab = ({ onNavigate }: PortfolioTabProps) => {
+  const { t } = useLanguage();
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.5 }}
-      className="min-h-screen pt-32 pb-12"
+      className="min-h-screen pt-36 md:pt-32 pb-12"
     >
       <div className="max-w-7xl mx-auto px-4">
         {/* Header */}
@@ -85,15 +84,15 @@ const PortfolioTab = ({ onNavigate }: PortfolioTabProps) => {
             animate={{ opacity: 1 }}
             className="inline-block px-4 py-1 rounded-full bg-primary/10 text-primary text-sm font-semibold mb-4"
           >
-            MEU PORTFÓLIO
+            {t("nav.portfolio").toUpperCase()}
           </motion.span>
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            Projetos que
+            {t("portfolio.title")}
             <br />
-            <span className="text-gradient">geram resultados</span>
+            <span className="text-gradient">{t("portfolio.highlight")}</span>
           </h1>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Cada projeto é desenvolvido com foco em performance, conversão e resultados reais para o cliente.
+            {t("portfolio.subtitle")}
           </p>
         </motion.div>
 
@@ -111,7 +110,7 @@ const PortfolioTab = ({ onNavigate }: PortfolioTabProps) => {
               {/* Featured badge */}
               <div className="absolute top-4 left-4 z-10 flex items-center gap-1 px-3 py-1 rounded-full bg-primary text-primary-foreground text-xs font-bold">
                 <Star className="w-3 h-3 fill-current" />
-                Destaque
+                {t("portfolio.badge.featured")}
               </div>
 
               {/* Result badge */}
@@ -150,14 +149,19 @@ const PortfolioTab = ({ onNavigate }: PortfolioTabProps) => {
 
                 {/* Actions */}
                 <div className="flex gap-3">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="rounded-full border-primary/50 hover:border-primary hover:bg-primary/10"
-                  >
-                    <ExternalLink className="w-4 h-4 mr-2" />
-                    Ver Projeto
-                  </Button>
+                  {project.githubUrl && (
+                    <Button
+                      asChild
+                      variant="outline"
+                      size="sm"
+                      className="rounded-full border-primary/50 hover:border-primary hover:bg-primary/10"
+                    >
+                      <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                        <Github className="w-4 h-4 mr-2" />
+                        {t("portfolio.view")}
+                      </a>
+                    </Button>
+                  )}
                 </div>
               </div>
             </motion.div>
@@ -165,6 +169,15 @@ const PortfolioTab = ({ onNavigate }: PortfolioTabProps) => {
         </div>
 
         {/* Other Projects Grid */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.3 }}
+          className="mb-8"
+        >
+          <h2 className="text-2xl font-bold mb-6 text-center">{t("portfolio.others")}</h2>
+        </motion.div>
+        
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
           {projects.filter(p => !p.featured).map((project, index) => (
             <motion.div
@@ -173,7 +186,7 @@ const PortfolioTab = ({ onNavigate }: PortfolioTabProps) => {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.3, delay: 0.3 + index * 0.1 }}
               whileHover={{ y: -5, scale: 1.02 }}
-              className="glass rounded-2xl overflow-hidden group"
+              className="glass rounded-2xl overflow-hidden group relative"
             >
               {/* Result badge */}
               <div className="absolute top-2 right-2 z-10 px-2 py-0.5 rounded-full bg-green-500/20 text-green-400 text-[10px] font-bold">

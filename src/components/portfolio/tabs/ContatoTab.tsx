@@ -1,42 +1,55 @@
 import { motion } from "framer-motion";
-import { Github, Linkedin, Mail, MessageCircle, Youtube, ArrowRight, CheckCircle2, Clock, Shield, Zap, Phone, MapPin } from "lucide-react";
+import { Github, Linkedin, Mail, MessageCircle, Youtube, ArrowRight, CheckCircle2, Clock, Shield, Zap, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
-const socialLinks = [
-  {
-    icon: Linkedin,
-    href: "https://www.linkedin.com/in/gabriel-nunes-barbosa-nogueira/",
-    label: "LinkedIn",
-    color: "hover:bg-blue-600/20 hover:border-blue-500/50 hover:text-blue-400",
-  },
-  {
-    icon: Github,
-    href: "https://github.com/Gabriel-boop-deep",
-    label: "GitHub",
-    color: "hover:bg-gray-600/20 hover:border-gray-500/50 hover:text-gray-300",
-  },
-  {
-    icon: Youtube,
-    href: "https://www.youtube.com/channel/UCooENE7KK2TEgCoqGBajBzA",
-    label: "YouTube",
-    color: "hover:bg-red-600/20 hover:border-red-500/50 hover:text-red-400",
-  },
-];
-
-const guarantees = [
-  { icon: Clock, text: "Resposta em até 24h" },
-  { icon: Shield, text: "Orçamento sem compromisso" },
-  { icon: CheckCircle2, text: "30 dias de suporte grátis" },
-];
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const ContatoTab = () => {
+  const { t } = useLanguage();
+  
+  const socialLinks = [
+    {
+      icon: Linkedin,
+      href: "https://www.linkedin.com/in/gabriel-nunes-barbosa-nogueira/",
+      label: "LinkedIn",
+      color: "hover:bg-blue-600/20 hover:border-blue-500/50 hover:text-blue-400",
+    },
+    {
+      icon: Github,
+      href: "https://github.com/Gabriel-boop-deep",
+      label: "GitHub",
+      color: "hover:bg-gray-600/20 hover:border-gray-500/50 hover:text-gray-300",
+    },
+    {
+      icon: Youtube,
+      href: "https://www.youtube.com/channel/UCooENE7KK2TEgCoqGBajBzA",
+      label: "YouTube",
+      color: "hover:bg-red-600/20 hover:border-red-500/50 hover:text-red-400",
+    },
+  ];
+
+  const guarantees = [
+    { icon: Clock, textKey: "contact.guarantee1" },
+    { icon: Shield, textKey: "contact.guarantee2" },
+    { icon: CheckCircle2, textKey: "contact.guarantee3" },
+  ];
+
+  const faqs = [
+    { qKey: "contact.faq1.q", aKey: "contact.faq1.a" },
+    { qKey: "contact.faq2.q", aKey: "contact.faq2.a" },
+    { qKey: "contact.faq3.q", aKey: "contact.faq3.a" },
+  ];
+  
+  const phoneNumber = "5571999428340";
+  const whatsappMessage = encodeURIComponent(t("whatsapp.message"));
+  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${whatsappMessage}`;
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.5 }}
-      className="min-h-screen pt-32 pb-12"
+      className="min-h-screen pt-36 md:pt-32 pb-12"
     >
       <div className="max-w-5xl mx-auto px-4">
         <motion.div
@@ -58,7 +71,7 @@ const ContatoTab = () => {
             >
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-500/10 border border-green-500/30">
                 <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-                <span className="text-green-400 text-sm font-semibold">Vaga disponível — Respondo hoje!</span>
+                <span className="text-green-400 text-sm font-semibold">{t("contact.available")}</span>
               </div>
             </motion.div>
 
@@ -70,32 +83,43 @@ const ContatoTab = () => {
               className="text-center mb-8"
             >
               <h1 className="text-3xl md:text-5xl font-bold mb-4">
-                Pronto para ter um
+                {t("contact.headline1")}
                 <br />
-                <span className="text-gradient">site que vende?</span>
+                <span className="text-gradient">{t("contact.headline2")}</span>
               </h1>
               <p className="text-muted-foreground text-lg max-w-xl mx-auto">
-                Me conta sobre seu projeto e receba um orçamento personalizado.
-                <span className="text-primary font-semibold"> Sem custo, sem compromisso.</span>
+                {t("contact.description")}
+                <span className="text-primary font-semibold"> {t("contact.noCommitment")}</span>
               </p>
             </motion.div>
 
-            {/* Main CTA */}
+            {/* Main CTA Buttons */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="flex justify-center mb-8"
+              className="flex flex-col sm:flex-row gap-4 justify-center mb-8"
             >
               <Button
                 asChild
                 size="lg"
-                className="bg-gradient-primary hover:opacity-90 text-primary-foreground font-bold rounded-full px-10 py-7 text-lg glow-primary animate-pulse-glow"
+                className="bg-gradient-primary hover:opacity-90 text-primary-foreground font-bold rounded-full px-8 py-6 text-base glow-primary animate-pulse-glow"
               >
                 <a href="mailto:gabrielnbn@hotmail.com?subject=Orçamento%20-%20Desenvolvimento%20Web&body=Olá%20Gabriel%2C%0A%0AVisitei%20seu%20portfólio%20e%20gostaria%20de%20um%20orçamento%20para%3A%0A%0A%5BDescreva%20seu%20projeto%20aqui%5D%0A%0AAtenciosamente%2C%0A%5BSeu%20nome%5D">
-                  <MessageCircle className="mr-2 h-5 w-5" />
-                  SOLICITAR ORÇAMENTO GRÁTIS
+                  <Mail className="mr-2 h-5 w-5" />
+                  {t("contact.cta")}
                   <ArrowRight className="ml-2 h-5 w-5" />
+                </a>
+              </Button>
+              
+              <Button
+                asChild
+                size="lg"
+                className="bg-[#25D366] hover:bg-[#20BA5C] text-white font-bold rounded-full px-8 py-6 text-base"
+              >
+                <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
+                  <MessageCircle className="mr-2 h-5 w-5" fill="white" />
+                  WhatsApp
                 </a>
               </Button>
             </motion.div>
@@ -110,7 +134,7 @@ const ContatoTab = () => {
               {guarantees.map((guarantee, index) => (
                 <div key={index} className="flex items-center gap-2 text-sm text-muted-foreground">
                   <guarantee.icon className="w-4 h-4 text-green-400" />
-                  <span>{guarantee.text}</span>
+                  <span>{t(guarantee.textKey)}</span>
                 </div>
               ))}
             </motion.div>
@@ -118,7 +142,7 @@ const ContatoTab = () => {
             {/* Divider */}
             <div className="flex items-center gap-4 mb-8">
               <div className="flex-1 h-px bg-border" />
-              <span className="text-muted-foreground text-sm">ou conecte-se comigo</span>
+              <span className="text-muted-foreground text-sm">{t("contact.connect")}</span>
               <div className="flex-1 h-px bg-border" />
             </div>
 
@@ -147,14 +171,23 @@ const ContatoTab = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.6 }}
-              className="text-center space-y-4"
+              className="text-center space-y-3"
             >
               <a
                 href="mailto:gabrielnbn@hotmail.com"
-                className="inline-flex items-center gap-2 text-primary hover:text-foreground transition-colors font-medium"
+                className="flex items-center justify-center gap-2 text-primary hover:text-foreground transition-colors font-medium"
               >
                 <Mail className="w-5 h-5" />
                 gabrielnbn@hotmail.com
+              </a>
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 text-green-400 hover:text-foreground transition-colors font-medium"
+              >
+                <Phone className="w-5 h-5" />
+                +55 71 99942-8340
               </a>
             </motion.div>
 
@@ -168,7 +201,7 @@ const ContatoTab = () => {
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-yellow-500/10 border border-yellow-500/30">
                 <Zap className="w-4 h-4 text-yellow-500" />
                 <span className="text-yellow-500 text-sm font-medium">
-                  ⚡ Apenas 3 vagas por mês — Garanta a sua!
+                  {t("contact.urgency")}
                 </span>
               </div>
             </motion.div>
@@ -182,20 +215,16 @@ const ContatoTab = () => {
           transition={{ duration: 0.6, delay: 0.5 }}
           className="mt-12 grid md:grid-cols-3 gap-6"
         >
-          {[
-            { q: "Quanto custa um site?", a: "Depende da complexidade. Sites simples a partir de R$ 997. Peça um orçamento personalizado!" },
-            { q: "Qual o prazo de entrega?", a: "Em média 7 dias úteis para sites landing page. Projetos maiores de 15-30 dias." },
-            { q: "O que está incluso?", a: "Design responsivo, SEO básico, hospedagem no primeiro ano e 30 dias de suporte." },
-          ].map((faq, index) => (
+          {faqs.map((faq, index) => (
             <motion.div
-              key={faq.q}
+              key={faq.qKey}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6 + index * 0.1 }}
               className="glass rounded-2xl p-6"
             >
-              <h4 className="font-bold text-primary mb-2">{faq.q}</h4>
-              <p className="text-sm text-muted-foreground">{faq.a}</p>
+              <h4 className="font-bold text-primary mb-2">{t(faq.qKey)}</h4>
+              <p className="text-sm text-muted-foreground">{t(faq.aKey)}</p>
             </motion.div>
           ))}
         </motion.div>

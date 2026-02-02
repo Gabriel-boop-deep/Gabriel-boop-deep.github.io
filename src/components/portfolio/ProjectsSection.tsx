@@ -3,6 +3,14 @@ import { ArrowUpRight, Globe, Trophy, ExternalLink } from "lucide-react";
 
 const projects = [
   {
+    title: "Discorama Insights Hub",
+    description: "Plataforma de análise de dados musicais com insights e visualizações interativas. Dashboard completo para descoberta de padrões.",
+    tags: ["React", "TypeScript", "Data Viz"],
+    link: "https://github.com/Nuono-Cyber/discorama-insights-hub",
+    featured: true,
+    result: "Data Analytics",
+  },
+  {
     title: "Velotech Bike Yourself",
     description: "Site profissional completo para loja de bicicletas. Design moderno, responsivo e otimizado para vendas. Resultado: aumento significativo na captação de clientes.",
     tags: ["React", "TypeScript", "Tailwind", "SEO"],
@@ -14,23 +22,15 @@ const projects = [
     title: "BANVIC Analytics",
     description: "Pipeline de dados completo com dbt e Modern Data Stack. Dashboards analíticos que transformam dados em decisões estratégicas.",
     tags: ["dbt", "SQL", "Python", "Analytics"],
-    link: "https://github.com/Gabriel-boop-deep/BANVIC_ANALYTICS_PROJECT",
-    featured: true,
+    featured: false,
     result: "Data Driven",
   },
   {
     title: "Classificação CNN",
     description: "Modelo de Deep Learning para classificação de imagens usando TensorFlow. Alta precisão com arquitetura customizada.",
     tags: ["TensorFlow", "Python", "CNN", "AI"],
-    link: "https://github.com/Gabriel-boop-deep/Classifica-o-de-Imagens-com-CNN-e-TensorFlow",
+    featured: false,
     result: "Machine Learning",
-  },
-  {
-    title: "Academy DBT",
-    description: "Projeto educacional de Data Engineering com testes automatizados e documentação profissional.",
-    tags: ["dbt", "SQL", "Data Quality"],
-    link: "https://github.com/Gabriel-boop-deep/academy-dbt",
-    result: "Data Engineering",
   },
 ];
 
