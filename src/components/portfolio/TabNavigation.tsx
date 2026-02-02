@@ -1,20 +1,25 @@
 import { motion } from "framer-motion";
 import { Home, Briefcase, FolderOpen, TrendingUp, MessageCircle, Zap } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
+import ThemeToggle from "./ThemeToggle";
+import LanguageToggle from "./LanguageToggle";
 
 interface TabNavigationProps {
   activeTab: string;
   onTabChange: (tab: string) => void;
 }
 
-const tabs = [
-  { id: "inicio", label: "Início", icon: Home },
-  { id: "servicos", label: "Serviços", icon: Briefcase },
-  { id: "portfolio", label: "Portfólio", icon: FolderOpen },
-  { id: "resultados", label: "Resultados", icon: TrendingUp },
-  { id: "contato", label: "Contato", icon: MessageCircle },
-];
-
 const TabNavigation = ({ activeTab, onTabChange }: TabNavigationProps) => {
+  const { t } = useLanguage();
+  
+  const tabs = [
+    { id: "inicio", labelKey: "nav.home", icon: Home },
+    { id: "servicos", labelKey: "nav.services", icon: Briefcase },
+    { id: "portfolio", labelKey: "nav.portfolio", icon: FolderOpen },
+    { id: "resultados", labelKey: "nav.results", icon: TrendingUp },
+    { id: "contato", labelKey: "nav.contact", icon: MessageCircle },
+  ];
+
   return (
     <motion.nav
       initial={{ y: -100, opacity: 0 }}
@@ -30,7 +35,7 @@ const TabNavigation = ({ activeTab, onTabChange }: TabNavigationProps) => {
       >
         <div className="max-w-7xl mx-auto px-4 flex items-center justify-center gap-2 text-primary-foreground font-semibold text-xs md:text-sm">
           <Zap className="w-3 h-3 md:w-4 md:h-4" />
-          <span>🔥 VAGAS LIMITADAS — Apenas 3 projetos por mês</span>
+          <span>{t("nav.urgency")}</span>
           <Zap className="w-3 h-3 md:w-4 md:h-4" />
         </div>
       </motion.div>
@@ -72,40 +77,51 @@ const TabNavigation = ({ activeTab, onTabChange }: TabNavigationProps) => {
                   )}
                   <span className="relative z-10 flex items-center gap-2">
                     <tab.icon className="w-4 h-4" />
-                    {tab.label}
+                    {t(tab.labelKey)}
                   </span>
                 </motion.button>
               ))}
             </div>
 
-            {/* CTA Button (Desktop) */}
-            <motion.button
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.6 }}
-              onClick={() => onTabChange("contato")}
-              className="hidden md:flex items-center gap-2 bg-gradient-primary hover:opacity-90 text-primary-foreground font-semibold rounded-full px-5 py-2 text-sm transition-all"
-            >
-              <Zap className="w-4 h-4" />
-              Orçamento
-            </motion.button>
-
-            {/* Mobile Tabs */}
-            <div className="flex md:hidden items-center gap-1 overflow-x-auto scrollbar-hide">
-              {tabs.map((tab) => (
-                <button
-                  key={tab.id}
-                  onClick={() => onTabChange(tab.id)}
-                  className={`p-2 rounded-lg transition-all duration-300 flex-shrink-0 ${
-                    activeTab === tab.id
-                      ? "bg-gradient-primary text-primary-foreground"
-                      : "text-muted-foreground"
-                  }`}
-                >
-                  <tab.icon className="w-5 h-5" />
-                </button>
-              ))}
+            {/* Right side controls */}
+            <div className="hidden md:flex items-center gap-2">
+              <LanguageToggle />
+              <ThemeToggle />
+              <motion.button
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.6 }}
+                onClick={() => onTabChange("contato")}
+                className="flex items-center gap-2 bg-gradient-primary hover:opacity-90 text-primary-foreground font-semibold rounded-full px-5 py-2 text-sm transition-all"
+              >
+                <Zap className="w-4 h-4" />
+                {t("nav.quote")}
+              </motion.button>
             </div>
+
+            {/* Mobile controls */}
+            <div className="flex md:hidden items-center gap-2">
+              <LanguageToggle />
+              <ThemeToggle />
+            </div>
+          </div>
+          
+          {/* Mobile Tabs */}
+          <div className="flex md:hidden items-center gap-1 overflow-x-auto scrollbar-hide mt-3 -mx-2 px-2">
+            {tabs.map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => onTabChange(tab.id)}
+                className={`p-2 rounded-lg transition-all duration-300 flex-shrink-0 flex flex-col items-center gap-1 min-w-[60px] ${
+                  activeTab === tab.id
+                    ? "bg-gradient-primary text-primary-foreground"
+                    : "text-muted-foreground"
+                }`}
+              >
+                <tab.icon className="w-5 h-5" />
+                <span className="text-[10px] font-medium">{t(tab.labelKey)}</span>
+              </button>
+            ))}
           </div>
         </div>
       </div>
