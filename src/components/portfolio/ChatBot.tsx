@@ -136,9 +136,9 @@ const ChatBot = () => {
         animate={{ rotate: isOpen ? 180 : 0 }}
       >
         {isOpen ? (
-          <X className="w-7 h-7 text-primary-foreground" />
+          <X className="w-6 h-6 md:w-7 md:h-7 text-primary-foreground" />
         ) : (
-          <MessageCircle className="w-7 h-7 text-primary-foreground" />
+          <Bot className="w-6 h-6 md:w-7 md:h-7 text-primary-foreground" />
         )}
       </motion.button>
 
@@ -158,7 +158,7 @@ const ChatBot = () => {
                 <Bot className="w-6 h-6 text-primary-foreground" />
               </div>
               <div>
-                <h3 className="font-bold text-primary-foreground">Assistente Gabriel</h3>
+                <h3 className="font-bold text-primary-foreground">GABOT</h3>
                 <p className="text-xs text-primary-foreground/80">Online • Responde instantaneamente</p>
               </div>
             </div>
