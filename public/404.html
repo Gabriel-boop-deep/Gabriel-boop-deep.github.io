@@ -5,17 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gabriel Nunes - AI Specialist & Data Engineer</title>
     <script type="text/javascript">
-      // Redireciona para index.html para SPA routing
-      // Pega a rota solicitada e a passa como um parâmetro
-      var pathSegments = window.location.pathname.split('/').filter(Boolean);
+      // Armazena o caminho atual antes de redirecionar
+      var pathname = window.location.pathname;
+      var search = window.location.search;
       
-      // Se tem um segmento de rota, guarda e redireciona
-      if (pathSegments.length > 0) {
-        sessionStorage.redirect = '/' + pathSegments.join('/');
+      // Evita redirect infinito
+      if (!sessionStorage.redirect_attempted) {
+        sessionStorage.redirect_attempted = 'true';
+        if (pathname !== '/' && pathname !== '/index.html') {
+          sessionStorage.redirect = pathname + search;
+        }
+        window.location.replace('/');
       }
-      
-      // Redireciona para a raiz
-      window.location.href = '/';
     </script>
   </head>
   <body>
