@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 const ParticlesBackground = () => {
   // CSS-based particle simulation for better compatibility
-  const particles = Array.from({ length: 50 }, (_, i) => ({
+  const particles = Array.from({ length: 20 }, (_, i) => ({
     id: i,
     x: Math.random() * 100,
     y: Math.random() * 100,
