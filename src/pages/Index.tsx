@@ -10,6 +10,7 @@ import ResultadosTab from "@/components/portfolio/tabs/ResultadosTab";
 import ContatoTab from "@/components/portfolio/tabs/ContatoTab";
 import Footer from "@/components/portfolio/Footer";
 import WhatsAppButton from "@/components/portfolio/WhatsAppButton";
+import ChatBot from "@/components/portfolio/ChatBot";
 
 const Index = () => {
   const [activeTab, setActiveTab] = useState("inicio");
@@ -56,8 +57,9 @@ const Index = () => {
         <Footer />
       </div>
 
-      {/* WhatsApp Button */}
+      {/* Floating Buttons */}
       <WhatsAppButton />
+      <ChatBot />
     </div>
   );
 };
