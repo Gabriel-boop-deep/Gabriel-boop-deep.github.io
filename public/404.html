@@ -5,17 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gabriel Nunes - AI Specialist & Data Engineer</title>
     <script type="text/javascript">
-      // Armazena o caminho atual antes de redirecionar
+      // Armazena a rota solicitada antes de redirecionar
       var pathname = window.location.pathname;
-      var search = window.location.search;
       
-      // Evita redirect infinito
-      if (!sessionStorage.redirect_attempted) {
-        sessionStorage.redirect_attempted = 'true';
-        if (pathname !== '/' && pathname !== '/index.html') {
-          sessionStorage.redirect = pathname + search;
-        }
-        window.location.replace('/');
+      if (pathname !== '/' && !pathname.includes('/index.html')) {
+        // Salva em sessionStorage para uso posterior
+        sessionStorage.redirect = pathname;
+        // Redireciona para a raiz
+        window.location.href = '/';
       }
     </script>
   </head>
