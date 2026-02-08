@@ -9,7 +9,6 @@ import PortfolioTab from "@/components/portfolio/tabs/PortfolioTab";
 import ResultadosTab from "@/components/portfolio/tabs/ResultadosTab";
 import ContatoTab from "@/components/portfolio/tabs/ContatoTab";
 import Footer from "@/components/portfolio/Footer";
-import ChatBot from "@/components/portfolio/ChatBot";
 import WhatsAppButton from "@/components/portfolio/WhatsAppButton";
 
 const Index = () => {
@@ -57,9 +56,6 @@ const Index = () => {
         <Footer />
       </div>
 
-      {/* ChatBot */}
-      <ChatBot />
-      
       {/* WhatsApp Button */}
       <WhatsAppButton />
     </div>
