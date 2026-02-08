@@ -130,7 +130,7 @@ const ChatBot = () => {
       {/* Chat Toggle Button */}
       <motion.button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-6 right-6 z-50 w-16 h-16 rounded-full bg-gradient-primary flex items-center justify-center shadow-lg glow-primary"
+        className="fixed bottom-6 right-6 z-50 w-14 h-14 md:w-16 md:h-16 rounded-full bg-gradient-primary flex items-center justify-center shadow-lg glow-primary"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         animate={{ rotate: isOpen ? 180 : 0 }}

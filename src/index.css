@@ -105,6 +105,7 @@
 
   html {
     scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
   }
 
   body {
@@ -137,11 +138,15 @@
   }
 
   .glass {
-    @apply bg-card/40 backdrop-blur-xl border border-border/50;
+    @apply bg-card/40 border border-border/50;
+    -webkit-backdrop-filter: blur(24px);
+    backdrop-filter: blur(24px);
   }
 
   .glass-strong {
-    @apply bg-card/60 backdrop-blur-2xl border border-border;
+    @apply bg-card/60 border border-border;
+    -webkit-backdrop-filter: blur(40px);
+    backdrop-filter: blur(40px);
   }
 
   .glow-primary {
