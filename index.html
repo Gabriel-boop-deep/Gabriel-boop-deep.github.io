@@ -19,6 +19,14 @@
     <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
 
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🤖</text></svg>" />
+    <script type="text/javascript">
+      // Restaura a rota quando vindo de um 404 redirect
+      var redirect = sessionStorage.redirect;
+      if (redirect && redirect !== window.location.pathname) {
+        delete sessionStorage.redirect;
+        window.history.replaceState(null, null, redirect);
+      }
+    </script>
     <script type="module" crossorigin src="/assets/index-TiPMAT0d.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-O8t03iKQ.css">
   </head>
