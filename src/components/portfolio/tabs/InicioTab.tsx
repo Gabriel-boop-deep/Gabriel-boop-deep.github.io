@@ -23,7 +23,7 @@ const InicioTab = ({ onNavigate }: InicioTabProps) => {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.5 }}
-      className="min-h-screen flex items-center pt-36 md:pt-32 pb-12 relative"
+      className="min-h-screen flex items-center pt-44 md:pt-32 pb-12 relative"
     >
       <div className="max-w-7xl mx-auto px-4 w-full">
         <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 items-center">
