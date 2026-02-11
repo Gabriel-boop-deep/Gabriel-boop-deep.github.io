@@ -21,7 +21,7 @@ const ContatoTab = () => {
     },
     {
       icon: Youtube,
-      href: "https://www.youtube.com/channel/UCooENE7KK2TEgCoqGBajBzA",
+      href: "https://www.youtube.com/@IdeIA-f7l5i",
       label: "YouTube",
       color: "hover:bg-red-600/20 hover:border-red-500/50 hover:text-red-400",
     },
