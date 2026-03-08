@@ -6,36 +6,36 @@ const services = [
   {
     icon: Code,
     title: "Desenvolvimento Web",
-    description: "Sites profissionais, landing pages e e-commerces com código limpo, otimizado e pronto para escalar.",
-    features: ["React/Next.js", "Performance A+", "SEO Otimizado"],
+    description: "Sites profissionais, landing pages e aplicações web com tecnologias modernas e código de alta qualidade.",
+    features: ["React / Next.js", "Performance otimizada", "SEO técnico"],
     highlight: "Mais Popular",
     popular: true,
   },
   {
     icon: Palette,
     title: "UI/UX Design",
-    description: "Interfaces modernas e intuitivas focadas em conversão. Design que não só impressiona, mas vende.",
-    features: ["Figma/Design System", "Responsivo", "User Testing"],
+    description: "Interfaces elegantes e funcionais, projetadas com foco na experiência do usuário e na conversão.",
+    features: ["Design System", "Responsivo", "Testes de usabilidade"],
     highlight: "Design Premium",
     popular: false,
   },
   {
     icon: Rocket,
     title: "Automação & IA",
-    description: "Integração de chatbots, automações e soluções de IA para otimizar processos e atendimento.",
-    features: ["Chatbots IA", "Automações", "APIs"],
+    description: "Soluções inteligentes com chatbots, automações de processos e integração de inteligência artificial.",
+    features: ["Chatbots IA", "Automações", "Integrações API"],
     highlight: "Inovação",
     popular: false,
   },
 ];
 
 const benefits = [
-  { icon: TrendingUp, title: "Site que Converte", description: "Design estratégico focado em vendas" },
+  { icon: TrendingUp, title: "Alta Conversão", description: "Design estratégico focado em resultados" },
   { icon: Smartphone, title: "100% Responsivo", description: "Perfeito em qualquer dispositivo" },
-  { icon: Zap, title: "Ultra Rápido", description: "Carregamento em menos de 3 segundos" },
-  { icon: Search, title: "SEO Incluído", description: "Apareça nas buscas do Google" },
-  { icon: Shield, title: "Seguro", description: "SSL + hospedagem de qualidade" },
-  { icon: HeadphonesIcon, title: "Suporte 30 dias", description: "Não te abandono após entrega" },
+  { icon: Zap, title: "Alta Performance", description: "Carregamento otimizado e rápido" },
+  { icon: Search, title: "SEO Incluído", description: "Visibilidade nos mecanismos de busca" },
+  { icon: Shield, title: "Segurança", description: "SSL e boas práticas de segurança" },
+  { icon: HeadphonesIcon, title: "Suporte", description: "30 dias de suporte pós-entrega" },
 ];
 
 interface ServicosTabProps {
@@ -49,30 +49,30 @@ const ServicosTab = ({ onNavigate }: ServicosTabProps) => {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.5 }}
-      className="min-h-screen pt-32 pb-12"
+      className="min-h-screen pt-28 pb-12"
     >
       <div className="max-w-7xl mx-auto px-4">
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
           <motion.span
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="inline-block px-4 py-1 rounded-full bg-primary/10 text-primary text-sm font-semibold mb-4"
+            className="inline-block px-3 py-1 rounded-md bg-primary/8 text-primary text-xs font-semibold tracking-wider uppercase mb-4"
           >
-            MEUS SERVIÇOS
+            Serviços
           </motion.span>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            Soluções que fazem seu
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+            Soluções digitais para
             <br />
-            <span className="text-gradient">negócio crescer</span>
+            <span className="text-gradient">impulsionar seu negócio</span>
           </h1>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Não vendo apenas sites. Entrego ferramentas de vendas personalizadas para cada tipo de negócio.
+          <p className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+            Desenvolvimento web profissional com foco em resultados mensuráveis e experiências digitais de alto impacto.
           </p>
         </motion.div>
 
@@ -81,16 +81,16 @@ const ServicosTab = ({ onNavigate }: ServicosTabProps) => {
           {services.map((service, index) => (
             <motion.div
               key={service.title}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.15 }}
-              whileHover={{ y: -8, scale: 1.02 }}
-              className={`glass rounded-3xl p-8 relative overflow-hidden group transition-all duration-300 ${
-                service.popular ? "border-2 border-primary/50 ring-2 ring-primary/20" : "hover:border-primary/30"
+              transition={{ duration: 0.4, delay: index * 0.1 }}
+              whileHover={{ y: -4 }}
+              className={`bg-card rounded-xl p-7 relative overflow-hidden border transition-all duration-300 shadow-sm hover:shadow-md ${
+                service.popular ? "border-primary/40 ring-1 ring-primary/20" : "border-border hover:border-primary/30"
               }`}
             >
               {/* Badge */}
-              <div className={`absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-bold ${
+              <div className={`absolute top-4 right-4 px-2.5 py-1 rounded-md text-xs font-medium ${
                 service.popular 
                   ? "bg-primary text-primary-foreground" 
                   : "bg-muted text-muted-foreground"
@@ -98,19 +98,16 @@ const ServicosTab = ({ onNavigate }: ServicosTabProps) => {
                 {service.highlight}
               </div>
 
-              {/* Glow effect */}
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
               <div className="relative z-10">
-                <div className="w-16 h-16 rounded-2xl bg-gradient-primary flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <service.icon className="w-8 h-8 text-primary-foreground" />
+                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-5">
+                  <service.icon className="w-6 h-6 text-primary" />
                 </div>
 
-                <h3 className="text-2xl font-bold mb-3 group-hover:text-primary transition-colors">
+                <h3 className="text-xl font-bold mb-3">
                   {service.title}
                 </h3>
 
-                <p className="text-muted-foreground mb-6 leading-relaxed">
+                <p className="text-muted-foreground text-sm mb-6 leading-relaxed">
                   {service.description}
                 </p>
 
@@ -127,10 +124,10 @@ const ServicosTab = ({ onNavigate }: ServicosTabProps) => {
                 <Button
                   onClick={() => onNavigate("contato")}
                   variant={service.popular ? "default" : "outline"}
-                  className={`w-full rounded-full ${
+                  className={`w-full rounded-lg ${
                     service.popular 
-                      ? "bg-gradient-primary hover:opacity-90 text-primary-foreground" 
-                      : "border-primary/50 hover:border-primary hover:bg-primary/10"
+                      ? "bg-primary hover:bg-primary/90 text-primary-foreground" 
+                      : "border-border hover:border-primary/50 hover:bg-primary/5"
                   }`}
                 >
                   Solicitar Orçamento
@@ -143,28 +140,28 @@ const ServicosTab = ({ onNavigate }: ServicosTabProps) => {
 
         {/* Benefits Grid */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="text-center mb-12"
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="text-center mb-10"
         >
           <h2 className="text-2xl md:text-3xl font-bold mb-2">
-            O que está <span className="text-gradient">incluso</span>
+            O que está <span className="text-primary">incluído</span>
           </h2>
-          <p className="text-muted-foreground">Em todos os projetos que entrego</p>
+          <p className="text-muted-foreground">Em todos os projetos</p>
         </motion.div>
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
           {benefits.map((benefit, index) => (
             <motion.div
               key={benefit.title}
-              initial={{ opacity: 0, scale: 0.9 }}
+              initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.3, delay: 0.4 + index * 0.05 }}
-              whileHover={{ scale: 1.05, y: -3 }}
-              className="glass rounded-2xl p-4 text-center group hover:border-primary/50 transition-all"
+              whileHover={{ y: -2 }}
+              className="bg-card border border-border rounded-xl p-4 text-center shadow-sm hover:shadow-md hover:border-primary/30 transition-all"
             >
-              <benefit.icon className="w-8 h-8 text-primary mx-auto mb-2 group-hover:scale-110 transition-transform" />
+              <benefit.icon className="w-7 h-7 text-primary mx-auto mb-2" />
               <h4 className="font-semibold text-sm mb-1">{benefit.title}</h4>
               <p className="text-xs text-muted-foreground">{benefit.description}</p>
             </motion.div>
