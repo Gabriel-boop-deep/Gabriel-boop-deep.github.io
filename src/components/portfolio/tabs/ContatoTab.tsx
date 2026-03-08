@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Github, Linkedin, Mail, MessageCircle, Youtube, ArrowRight, CheckCircle2, Clock, Shield, Zap, Phone } from "lucide-react";
+import { Github, Linkedin, Mail, MessageCircle, Youtube, ArrowRight, CheckCircle2, Clock, Shield, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -11,19 +11,16 @@ const ContatoTab = () => {
       icon: Linkedin,
       href: "https://www.linkedin.com/in/gabriel-nunes-barbosa-nogueira/",
       label: "LinkedIn",
-      color: "hover:bg-blue-600/20 hover:border-blue-500/50 hover:text-blue-400",
     },
     {
       icon: Github,
       href: "https://github.com/Gabriel-boop-deep",
       label: "GitHub",
-      color: "hover:bg-gray-600/20 hover:border-gray-500/50 hover:text-gray-300",
     },
     {
       icon: Youtube,
       href: "https://www.youtube.com/@IdeIA-f7l5i",
       label: "YouTube",
-      color: "hover:bg-red-600/20 hover:border-red-500/50 hover:text-red-400",
     },
   ];
 
@@ -49,61 +46,58 @@ const ContatoTab = () => {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.5 }}
-      className="min-h-screen pt-36 md:pt-32 pb-12"
+      className="min-h-screen pt-28 pb-12"
     >
       <div className="max-w-5xl mx-auto px-4">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="glass rounded-3xl p-8 md:p-12 relative overflow-hidden border-2 border-primary/20"
+          transition={{ duration: 0.5 }}
+          className="bg-card border border-border rounded-xl p-8 md:p-12 relative overflow-hidden shadow-sm"
         >
-          {/* Glow effects */}
-          <div className="absolute top-0 right-0 w-96 h-96 bg-primary/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-          <div className="absolute bottom-0 left-0 w-96 h-96 bg-secondary/20 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
-
           <div className="relative z-10">
-            {/* Urgency badge */}
+            {/* Status badge */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.1 }}
               className="flex justify-center mb-6"
             >
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-500/10 border border-green-500/30">
-                <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-                <span className="text-green-400 text-sm font-semibold">{t("contact.available")}</span>
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md bg-primary/8 border border-primary/20">
+                <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+                <span className="text-primary text-sm font-medium">{t("contact.available")}</span>
               </div>
             </motion.div>
 
-            {/* Main headline */}
+            {/* Headline */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
+              transition={{ delay: 0.15 }}
               className="text-center mb-8"
             >
-              <h1 className="text-3xl md:text-5xl font-bold mb-4">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
                 {t("contact.headline1")}
                 <br />
                 <span className="text-gradient">{t("contact.headline2")}</span>
               </h1>
-              <p className="text-muted-foreground text-lg max-w-xl mx-auto">
+              <p className="text-muted-foreground text-base md:text-lg max-w-xl mx-auto leading-relaxed">
                 {t("contact.description")}
-                <span className="text-primary font-semibold"> {t("contact.noCommitment")}</span>
+                <span className="text-primary font-medium"> {t("contact.noCommitment")}</span>
               </p>
             </motion.div>
 
-            {/* Main CTA Buttons */}
+            {/* CTA Buttons */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center mb-8"
+              className="flex flex-col sm:flex-row gap-3 justify-center mb-8"
             >
               <Button
                 asChild
                 size="lg"
-                className="bg-gradient-primary hover:opacity-90 text-primary-foreground font-bold rounded-full px-8 py-6 text-base glow-primary animate-pulse-glow"
+                className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold rounded-lg px-8 py-6 text-base shadow-md"
               >
                 <a href="mailto:gabrielnbn@hotmail.com?subject=Orçamento%20-%20Desenvolvimento%20Web&body=Olá%20Gabriel%2C%0A%0AVisitei%20seu%20portfólio%20e%20gostaria%20de%20um%20orçamento%20para%3A%0A%0A%5BDescreva%20seu%20projeto%20aqui%5D%0A%0AAtenciosamente%2C%0A%5BSeu%20nome%5D">
                   <Mail className="mr-2 h-5 w-5" />
@@ -115,10 +109,11 @@ const ContatoTab = () => {
               <Button
                 asChild
                 size="lg"
-                className="bg-[#25D366] hover:bg-[#20BA5C] text-white font-bold rounded-full px-8 py-6 text-base"
+                variant="outline"
+                className="font-semibold rounded-lg px-8 py-6 text-base border-border hover:border-primary/50 hover:bg-primary/5"
               >
                 <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
-                  <MessageCircle className="mr-2 h-5 w-5" fill="white" />
+                  <MessageCircle className="mr-2 h-5 w-5" />
                   WhatsApp
                 </a>
               </Button>
@@ -126,14 +121,14 @@ const ContatoTab = () => {
 
             {/* Guarantees */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
               transition={{ delay: 0.3 }}
               className="flex flex-wrap justify-center gap-6 mb-10"
             >
               {guarantees.map((guarantee, index) => (
                 <div key={index} className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <guarantee.icon className="w-4 h-4 text-green-400" />
+                  <guarantee.icon className="w-4 h-4 text-primary" />
                   <span>{t(guarantee.textKey)}</span>
                 </div>
               ))}
@@ -147,21 +142,20 @@ const ContatoTab = () => {
             </div>
 
             {/* Social Links */}
-            <div className="flex justify-center gap-4 flex-wrap mb-8">
+            <div className="flex justify-center gap-3 flex-wrap mb-8">
               {socialLinks.map((social, index) => (
                 <motion.a
                   key={social.label}
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.4 + index * 0.1 }}
-                  whileHover={{ scale: 1.1, y: -5 }}
-                  whileTap={{ scale: 0.95 }}
-                  className={`w-14 h-14 rounded-2xl glass-strong flex items-center justify-center text-muted-foreground transition-all duration-300 ${social.color}`}
+                  transition={{ delay: 0.35 + index * 0.05 }}
+                  whileHover={{ y: -2 }}
+                  className="w-12 h-12 rounded-lg bg-muted border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/50 transition-all"
                 >
-                  <social.icon size={24} />
+                  <social.icon size={20} />
                 </motion.a>
               ))}
             </div>
@@ -170,61 +164,46 @@ const ContatoTab = () => {
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.6 }}
-              className="text-center space-y-3"
+              transition={{ delay: 0.5 }}
+              className="text-center space-y-2"
             >
               <a
                 href="mailto:gabrielnbn@hotmail.com"
-                className="flex items-center justify-center gap-2 text-primary hover:text-foreground transition-colors font-medium"
+                className="flex items-center justify-center gap-2 text-primary hover:text-foreground transition-colors font-medium text-sm"
               >
-                <Mail className="w-5 h-5" />
+                <Mail className="w-4 h-4" />
                 gabrielnbn@hotmail.com
               </a>
               <a
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 text-green-400 hover:text-foreground transition-colors font-medium"
+                className="flex items-center justify-center gap-2 text-muted-foreground hover:text-foreground transition-colors font-medium text-sm"
               >
-                <Phone className="w-5 h-5" />
+                <Phone className="w-4 h-4" />
                 +55 71 99942-8340
               </a>
-            </motion.div>
-
-            {/* Final urgency */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.7 }}
-              className="mt-10 text-center"
-            >
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-yellow-500/10 border border-yellow-500/30">
-                <Zap className="w-4 h-4 text-yellow-500" />
-                <span className="text-yellow-500 text-sm font-medium">
-                  {t("contact.urgency")}
-                </span>
-              </div>
             </motion.div>
           </div>
         </motion.div>
 
-        {/* FAQ Preview */}
+        {/* FAQ */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          className="mt-12 grid md:grid-cols-3 gap-6"
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="mt-8 grid md:grid-cols-3 gap-4"
         >
           {faqs.map((faq, index) => (
             <motion.div
               key={faq.qKey}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6 + index * 0.1 }}
-              className="glass rounded-2xl p-6"
+              transition={{ delay: 0.5 + index * 0.08 }}
+              className="bg-card border border-border rounded-xl p-5 shadow-sm"
             >
-              <h4 className="font-bold text-primary mb-2">{t(faq.qKey)}</h4>
-              <p className="text-sm text-muted-foreground">{t(faq.aKey)}</p>
+              <h4 className="font-semibold text-primary text-sm mb-2">{t(faq.qKey)}</h4>
+              <p className="text-sm text-muted-foreground leading-relaxed">{t(faq.aKey)}</p>
             </motion.div>
           ))}
         </motion.div>

@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowRight, CheckCircle2, Zap, Clock, TrendingUp } from "lucide-react";
+import { ArrowRight, CheckCircle2, Clock, TrendingUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
 import profileImage from "@/assets/profile.jpeg";
@@ -24,47 +24,47 @@ const InicioTab = ({ onNavigate }: InicioTabProps) => {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.5 }}
-      className="min-h-screen flex items-center pt-44 md:pt-32 pb-12 relative"
+      className="min-h-screen flex items-center pt-32 pb-12 relative"
     >
       <div className="max-w-7xl mx-auto px-4 w-full">
-        <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 items-center">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Content */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
             className="text-center lg:text-left"
           >
-            {/* Trust badge */}
+            {/* Status badge */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass border-green-500/50 mb-4"
+              transition={{ delay: 0.3 }}
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/8 border border-primary/20 mb-5"
             >
-              <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-              <span className="text-xs md:text-sm font-medium text-green-400">{t("hero.available")}</span>
+              <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+              <span className="text-xs font-medium text-primary">{t("hero.available")}</span>
             </motion.div>
 
             {/* Name and title */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.45 }}
-              className="mb-4"
+              transition={{ delay: 0.35 }}
+              className="mb-5"
             >
-              <h2 className="text-2xl md:text-3xl font-bold">
-                <span className="text-gradient">Gabriel Nunes</span>
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground">
+                Gabriel Nunes
               </h2>
-              <p className="text-sm md:text-base text-muted-foreground">{t("hero.title")}</p>
+              <p className="text-sm md:text-base text-muted-foreground mt-1">{t("hero.title")}</p>
             </motion.div>
 
             {/* Main headline */}
             <motion.h1
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 }}
-              className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight"
+              transition={{ delay: 0.4 }}
+              className="text-3xl md:text-4xl lg:text-5xl font-bold mb-5 leading-tight"
             >
               {t("hero.headline1")}
               <br />
@@ -75,43 +75,43 @@ const InicioTab = ({ onNavigate }: InicioTabProps) => {
               </span>
             </motion.h1>
 
-            {/* Value proposition */}
+            {/* Description */}
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6 }}
-              className="text-sm md:text-base lg:text-lg text-muted-foreground mb-6 max-w-xl mx-auto lg:mx-0"
+              transition={{ delay: 0.5 }}
+              className="text-sm md:text-base lg:text-lg text-muted-foreground mb-6 max-w-xl mx-auto lg:mx-0 leading-relaxed"
             >
               {t("hero.description")}
             </motion.p>
 
-            {/* Urgency points */}
+            {/* Points */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7 }}
-              className="flex flex-col gap-2 mb-6"
+              transition={{ delay: 0.55 }}
+              className="flex flex-col gap-2.5 mb-7"
             >
               {urgencyPoints.map((point, index) => (
                 <motion.div
                   key={point.textKey}
-                  initial={{ opacity: 0, x: -20 }}
+                  initial={{ opacity: 0, x: -15 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.8 + index * 0.1 }}
+                  transition={{ delay: 0.6 + index * 0.08 }}
                   className="flex items-center gap-3"
                 >
-                  <point.icon className="w-5 h-5 text-green-400 flex-shrink-0" />
-                  <span className="text-foreground font-medium">{t(point.textKey)}</span>
+                  <point.icon className="w-4.5 h-4.5 text-primary flex-shrink-0" />
+                  <span className="text-foreground font-medium text-sm">{t(point.textKey)}</span>
                 </motion.div>
               ))}
             </motion.div>
 
             {/* Stats */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.9 }}
-              className="flex justify-center lg:justify-start gap-4 md:gap-8 mb-8"
+              transition={{ delay: 0.7 }}
+              className="flex justify-center lg:justify-start gap-8 mb-8"
             >
               {[
                 { number: "20+", labelKey: "hero.projects", icon: TrendingUp },
@@ -120,14 +120,14 @@ const InicioTab = ({ onNavigate }: InicioTabProps) => {
               ].map((stat, index) => (
                 <motion.div
                   key={stat.labelKey}
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ delay: 1 + index * 0.1, type: "spring" }}
+                  initial={{ scale: 0.9, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ delay: 0.75 + index * 0.08 }}
                   className="text-center"
                 >
-                  <div className="flex items-center justify-center gap-1 mb-0.5">
-                    <stat.icon className="w-3 h-3 md:w-4 md:h-4 text-primary" />
-                    <span className="text-xl md:text-2xl font-bold text-gradient">
+                  <div className="flex items-center justify-center gap-1.5 mb-1">
+                    <stat.icon className="w-3.5 h-3.5 text-primary" />
+                    <span className="text-xl md:text-2xl font-bold text-foreground">
                       {stat.number}
                     </span>
                   </div>
@@ -140,15 +140,15 @@ const InicioTab = ({ onNavigate }: InicioTabProps) => {
 
             {/* CTA Buttons */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.1 }}
+              transition={{ delay: 0.85 }}
               className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start"
             >
               <Button
                 onClick={() => onNavigate("contato")}
                 size="lg"
-                className="bg-gradient-primary hover:opacity-90 text-primary-foreground font-bold rounded-full px-6 py-5 text-sm md:text-base glow-primary animate-pulse-glow"
+                className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold rounded-lg px-6 py-5 text-sm md:text-base shadow-md"
               >
                 {t("hero.cta")}
                 <ArrowRight className="ml-2 h-4 w-4" />
@@ -157,63 +157,56 @@ const InicioTab = ({ onNavigate }: InicioTabProps) => {
                 onClick={() => onNavigate("portfolio")}
                 variant="outline"
                 size="lg"
-                className="rounded-full px-6 py-5 border-primary/50 hover:border-primary hover:bg-primary/10 font-semibold text-sm md:text-base"
+                className="rounded-lg px-6 py-5 border-border hover:border-primary/50 hover:bg-primary/5 font-medium text-sm md:text-base"
               >
                 {t("hero.results")}
               </Button>
             </motion.div>
 
-            {/* Micro-commitment */}
+            {/* Commitment */}
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 1.3 }}
+              transition={{ delay: 1 }}
               className="text-sm text-muted-foreground mt-4 flex items-center gap-2 justify-center lg:justify-start"
             >
-              <CheckCircle2 className="w-4 h-4 text-green-400" />
+              <CheckCircle2 className="w-4 h-4 text-primary" />
               {t("hero.commitment")}
             </motion.p>
           </motion.div>
 
-          {/* Profile Image - Larger and less gap */}
+          {/* Profile Image */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
+            initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            transition={{ duration: 0.7, delay: 0.3 }}
             className="relative flex justify-center lg:justify-end order-first lg:order-last"
           >
             <div className="relative">
-              <div className="absolute inset-0 rounded-3xl bg-gradient-primary opacity-20 blur-3xl" />
+              <div className="absolute inset-0 rounded-2xl bg-primary/5 blur-3xl" />
               
-              {/* Increased image size significantly */}
-              <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-[400px] lg:h-[400px]">
-                <div className="absolute inset-0 rounded-3xl border-gradient p-1">
-                  <div className="w-full h-full rounded-3xl bg-gradient-to-br from-muted to-background flex items-center justify-center overflow-hidden">
-                    <img 
-                      src={profileImage} 
-                      alt="Gabriel Nunes - Desenvolvedor Web Profissional" 
-                      className="w-full h-full object-cover object-top"
-                    />
-                  </div>
+              <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-[380px] lg:h-[380px]">
+                <div className="w-full h-full rounded-2xl overflow-hidden border-2 border-border shadow-lg">
+                  <img 
+                    src={profileImage} 
+                    alt="Gabriel Nunes - Desenvolvedor Web Profissional" 
+                    className="w-full h-full object-cover object-top"
+                  />
                 </div>
 
-                <div className="absolute -top-2 -left-2 w-10 h-10 md:w-12 md:h-12 border-l-2 border-t-2 border-primary rounded-tl-lg" />
-                <div className="absolute -top-2 -right-2 w-10 h-10 md:w-12 md:h-12 border-r-2 border-t-2 border-primary rounded-tr-lg" />
-                <div className="absolute -bottom-2 -left-2 w-10 h-10 md:w-12 md:h-12 border-l-2 border-b-2 border-primary rounded-bl-lg" />
-                <div className="absolute -bottom-2 -right-2 w-10 h-10 md:w-12 md:h-12 border-r-2 border-b-2 border-primary rounded-br-lg" />
-
+                {/* Floating badges - subtle */}
                 <motion.div
-                  animate={{ y: [0, -6, 0] }}
-                  transition={{ duration: 3, repeat: Infinity }}
-                  className="absolute -top-3 -right-3 md:-top-4 md:-right-4 px-3 py-1.5 md:px-4 md:py-2 rounded-lg glass-strong text-xs md:text-sm font-bold border border-green-500/30"
+                  animate={{ y: [0, -4, 0] }}
+                  transition={{ duration: 4, repeat: Infinity }}
+                  className="absolute -top-3 -right-3 md:-top-4 md:-right-4 px-3 py-1.5 rounded-lg bg-card border border-border shadow-md text-xs font-medium"
                 >
-                  <span className="text-green-400">✓</span> {t("hero.webExpert")}
+                  <span className="text-primary">✓</span> {t("hero.webExpert")}
                 </motion.div>
                 
                 <motion.div
-                  animate={{ y: [0, 6, 0] }}
-                  transition={{ duration: 4, repeat: Infinity }}
-                  className="absolute -bottom-3 -left-3 md:-bottom-4 md:-left-4 px-3 py-1.5 md:px-4 md:py-2 rounded-lg glass-strong text-xs md:text-sm font-bold border border-primary/30"
+                  animate={{ y: [0, 4, 0] }}
+                  transition={{ duration: 5, repeat: Infinity }}
+                  className="absolute -bottom-3 -left-3 md:-bottom-4 md:-left-4 px-3 py-1.5 rounded-lg bg-card border border-border shadow-md text-xs font-medium"
                 >
                   <span className="text-primary">⚡</span> {t("hero.fast")}
                 </motion.div>

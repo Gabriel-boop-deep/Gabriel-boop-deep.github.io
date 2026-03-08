@@ -1,10 +1,10 @@
 const ParticlesBackground = () => {
-  const particles = Array.from({ length: 15 }, (_, i) => ({
+  const particles = Array.from({ length: 8 }, (_, i) => ({
     id: i,
     x: Math.random() * 100,
     y: Math.random() * 100,
-    size: Math.random() * 3 + 1,
-    duration: Math.random() * 20 + 15,
+    size: Math.random() * 2 + 1,
+    duration: Math.random() * 25 + 20,
     delay: Math.random() * 10,
   }));
 
@@ -13,7 +13,7 @@ const ParticlesBackground = () => {
       {particles.map((particle) => (
         <div
           key={particle.id}
-          className="absolute rounded-full bg-primary/20"
+          className="absolute rounded-full bg-primary/10"
           style={{
             left: `${particle.x}%`,
             top: `${particle.y}%`,
