@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
 import profileImage from "@/assets/profile.jpeg";
 import VideoSection from "@/components/portfolio/VideoSection";
-import ClientsSection from "@/components/portfolio/ClientsSection";
+
 
 interface InicioTabProps {
   onNavigate: (tab: string) => void;
