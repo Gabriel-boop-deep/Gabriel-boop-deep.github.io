@@ -1,7 +1,5 @@
 import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
-import ParticlesBackground from "@/components/portfolio/ParticlesBackground";
-import GradientOrbs from "@/components/portfolio/GradientOrbs";
 import TabNavigation from "@/components/portfolio/TabNavigation";
 import InicioTab from "@/components/portfolio/tabs/InicioTab";
 import ServicosTab from "@/components/portfolio/tabs/ServicosTab";
@@ -38,26 +36,14 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background relative overflow-x-hidden">
-      {/* Background Effects */}
-      <GradientOrbs />
-      <ParticlesBackground />
-      <div className="fixed inset-0 grid-pattern pointer-events-none z-[1]" />
-
-      {/* Navigation */}
+    <div className="min-h-screen bg-background">
       <TabNavigation activeTab={activeTab} onTabChange={handleTabChange} />
-
-      {/* Content */}
-      <div className="relative z-10">
-        <main>
-          <AnimatePresence mode="wait">
-            {renderTabContent()}
-          </AnimatePresence>
-        </main>
-        <Footer />
-      </div>
-
-      {/* Floating Buttons */}
+      <main>
+        <AnimatePresence mode="wait">
+          {renderTabContent()}
+        </AnimatePresence>
+      </main>
+      <Footer />
       <WhatsAppButton />
       <ChatBot />
     </div>

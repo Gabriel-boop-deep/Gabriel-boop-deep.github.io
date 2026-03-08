@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowRight, CheckCircle2, Clock, TrendingUp, Shield, Zap, Target } from "lucide-react";
+import { ArrowRight, CheckCircle2, Clock, TrendingUp, Shield, Zap, Target, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
 import profileImage from "@/assets/profile.jpeg";
@@ -14,169 +14,150 @@ const InicioTab = ({ onNavigate }: InicioTabProps) => {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -20 }}
-      transition={{ duration: 0.5 }}
-      className="pt-24 pb-12"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.4 }}
     >
-      {/* Hero — Full width centered */}
-      <section className="relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 py-16 md:py-24">
-          <div className="text-center max-w-4xl mx-auto">
-            {/* Status badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/8 border border-primary/20 mb-8"
-            >
-              <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-              <span className="text-xs font-medium text-primary">{t("hero.available")}</span>
-            </motion.div>
-
-            {/* Main headline */}
-            <motion.h1
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight tracking-tight"
-            >
-              {t("hero.headline1")}
-              <br />
-              <span className="text-gradient">{t("hero.headline2")}</span>
-            </motion.h1>
-
-            {/* Subtitle */}
-            <motion.p
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-              className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto leading-relaxed"
-            >
-              {t("hero.description")}
-            </motion.p>
-
-            {/* CTA Buttons */}
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center mb-16"
-            >
-              <Button
-                onClick={() => onNavigate("contato")}
-                size="lg"
-                className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold rounded-lg px-8 py-6 text-base shadow-md"
+      {/* Hero — Full-bleed dark section */}
+      <section className="pt-20 md:pt-16">
+        <div className="max-w-7xl mx-auto px-4 md:px-8 py-20 md:py-32">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            {/* Left — Copy */}
+            <div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 }}
+                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md bg-primary/10 border border-primary/20 mb-6"
               >
-                {t("hero.cta")}
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-              <Button
-                onClick={() => onNavigate("portfolio")}
-                variant="outline"
-                size="lg"
-                className="rounded-lg px-8 py-6 border-border hover:border-primary/50 hover:bg-primary/5 font-medium text-base"
+                <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+                <span className="text-xs font-medium text-primary">{t("hero.available")}</span>
+              </motion.div>
+
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+                className="text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight mb-6"
               >
-                {t("hero.results")}
-              </Button>
+                {t("hero.headline1")}
+                <br />
+                <span className="text-primary">{t("hero.headline2")}</span>
+              </motion.h1>
+
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+                className="text-lg text-muted-foreground mb-8 max-w-lg leading-relaxed"
+              >
+                {t("hero.description")}
+              </motion.p>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+                className="flex flex-col sm:flex-row gap-3"
+              >
+                <Button
+                  onClick={() => onNavigate("contato")}
+                  size="lg"
+                  className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold rounded-md px-8 h-12 text-sm"
+                >
+                  {t("hero.cta")}
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+                <Button
+                  onClick={() => onNavigate("portfolio")}
+                  variant="outline"
+                  size="lg"
+                  className="rounded-md px-8 h-12 border-border hover:border-primary/50 font-medium text-sm"
+                >
+                  {t("hero.results")}
+                  <ChevronRight className="ml-1 h-4 w-4" />
+                </Button>
+              </motion.div>
+            </div>
+
+            {/* Right — Profile + Stats */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.3, duration: 0.5 }}
+              className="relative"
+            >
+              <div className="bg-card border border-border rounded-2xl p-6 md:p-8">
+                {/* Profile header */}
+                <div className="flex items-center gap-4 mb-6 pb-6 border-b border-border">
+                  <div className="w-16 h-16 rounded-xl overflow-hidden border-2 border-border flex-shrink-0">
+                    <img
+                      src={profileImage}
+                      alt="Gabriel Nunes"
+                      className="w-full h-full object-cover object-top"
+                    />
+                  </div>
+                  <div>
+                    <h2 className="text-lg font-bold text-foreground">Gabriel Nunes</h2>
+                    <p className="text-sm text-muted-foreground">{t("hero.title")}</p>
+                  </div>
+                </div>
+
+                {/* Stats grid */}
+                <div className="grid grid-cols-3 gap-4 mb-6">
+                  {[
+                    { number: "20+", labelKey: "hero.projects", icon: TrendingUp },
+                    { number: "100%", labelKey: "hero.satisfaction", icon: CheckCircle2 },
+                    { number: "7d", labelKey: "hero.delivery", icon: Clock },
+                  ].map((stat) => (
+                    <div key={stat.labelKey} className="text-center p-3 rounded-lg bg-muted/50">
+                      <stat.icon className="w-4 h-4 text-primary mx-auto mb-1.5" />
+                      <div className="text-xl font-bold text-foreground">{stat.number}</div>
+                      <div className="text-[10px] text-muted-foreground uppercase tracking-wider mt-0.5">
+                        {t(stat.labelKey)}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Differentiators */}
+                <div className="space-y-3">
+                  {[
+                    { icon: Target, textKey: "hero.point1" },
+                    { icon: Zap, textKey: "hero.point2" },
+                    { icon: Shield, textKey: "hero.point3" },
+                  ].map((point) => (
+                    <div key={point.textKey} className="flex items-center gap-3">
+                      <div className="w-8 h-8 rounded-md bg-primary/10 flex items-center justify-center flex-shrink-0">
+                        <point.icon className="w-4 h-4 text-primary" />
+                      </div>
+                      <span className="text-sm text-foreground">{t(point.textKey)}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </motion.div>
           </div>
-
-          {/* Stats bar */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6 }}
-            className="grid grid-cols-3 gap-4 max-w-3xl mx-auto"
-          >
-            {[
-              { number: "20+", labelKey: "hero.projects", icon: TrendingUp },
-              { number: "100%", labelKey: "hero.satisfaction", icon: CheckCircle2 },
-              { number: "7d", labelKey: "hero.delivery", icon: Clock },
-            ].map((stat, index) => (
-              <motion.div
-                key={stat.labelKey}
-                initial={{ scale: 0.9, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ delay: 0.7 + index * 0.1 }}
-                className="flex flex-col items-center p-5 rounded-xl bg-card/50 border border-border/50"
-              >
-                <stat.icon className="w-5 h-5 text-primary mb-2" />
-                <span className="text-2xl md:text-3xl font-bold text-foreground">
-                  {stat.number}
-                </span>
-                <span className="text-xs text-muted-foreground uppercase tracking-wider mt-1">
-                  {t(stat.labelKey)}
-                </span>
-              </motion.div>
-            ))}
-          </motion.div>
         </div>
       </section>
 
-      {/* About strip — profile + points */}
-      <section className="border-t border-border/50">
-        <div className="max-w-7xl mx-auto px-4 py-16 md:py-20">
-          <div className="grid md:grid-cols-12 gap-10 items-center">
-            {/* Profile */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="md:col-span-4 flex justify-center"
-            >
-              <div className="relative w-56 h-56 md:w-64 md:h-64 rounded-2xl overflow-hidden border-2 border-border shadow-lg">
-                <img
-                  src={profileImage}
-                  alt="Gabriel Nunes - Desenvolvedor Web Profissional"
-                  className="w-full h-full object-cover object-top"
-                />
-              </div>
-            </motion.div>
-
-            {/* Info */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="md:col-span-8"
-            >
-              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-2">
-                Gabriel Nunes
-              </h2>
-              <p className="text-muted-foreground mb-6">{t("hero.title")}</p>
-
-              <div className="grid sm:grid-cols-3 gap-4">
-                {[
-                  { icon: Target, textKey: "hero.point1" },
-                  { icon: Zap, textKey: "hero.point2" },
-                  { icon: Shield, textKey: "hero.point3" },
-                ].map((point, i) => (
-                  <div
-                    key={point.textKey}
-                    className="flex items-start gap-3 p-4 rounded-xl bg-card/50 border border-border/50"
-                  >
-                    <point.icon className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-sm font-medium text-foreground">{t(point.textKey)}</span>
-                  </div>
-                ))}
-              </div>
-
-              <p className="text-sm text-muted-foreground mt-6 flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-primary" />
-                {t("hero.commitment")}
-              </p>
-            </motion.div>
+      {/* Trust bar */}
+      <section className="border-y border-border bg-muted/30">
+        <div className="max-w-7xl mx-auto px-4 md:px-8 py-6">
+          <div className="flex items-center justify-center gap-8 flex-wrap text-sm text-muted-foreground">
+            <span className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-primary" />{t("hero.commitment")}</span>
+            <span className="hidden sm:block w-px h-4 bg-border" />
+            <span className="flex items-center gap-2"><Shield className="w-4 h-4 text-primary" />SSL & Segurança</span>
+            <span className="hidden sm:block w-px h-4 bg-border" />
+            <span className="flex items-center gap-2"><Zap className="w-4 h-4 text-primary" />Performance A+</span>
           </div>
         </div>
       </section>
 
       {/* Video Section */}
-      <section className="border-t border-border/50">
-        <div className="max-w-7xl mx-auto px-4 py-16 md:py-20">
+      <section>
+        <div className="max-w-7xl mx-auto px-4 md:px-8">
           <VideoSection />
         </div>
       </section>
