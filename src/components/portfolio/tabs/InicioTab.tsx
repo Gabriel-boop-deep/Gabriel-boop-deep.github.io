@@ -156,6 +156,9 @@ const InicioTab = ({ onNavigate }: InicioTabProps) => {
         </div>
       </section>
 
+      {/* Clients */}
+      <ClientsSection />
+
       {/* Video Section */}
       <section>
         <div className="max-w-7xl mx-auto px-4 md:px-8">
