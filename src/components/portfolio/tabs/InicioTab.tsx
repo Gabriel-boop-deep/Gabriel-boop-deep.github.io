@@ -92,7 +92,7 @@ const InicioTab = ({ onNavigate }: InicioTabProps) => {
               <div className="bg-card border border-border rounded-2xl p-6 md:p-8">
                 {/* Profile header */}
                 <div className="flex items-center gap-4 mb-6 pb-6 border-b border-border">
-                  <div className="w-16 h-16 rounded-xl overflow-hidden border-2 border-border flex-shrink-0">
+                  <div className="w-24 h-24 rounded-xl overflow-hidden border-2 border-border flex-shrink-0">
                     <img
                       src={profileImage}
                       alt="Gabriel Nunes"
