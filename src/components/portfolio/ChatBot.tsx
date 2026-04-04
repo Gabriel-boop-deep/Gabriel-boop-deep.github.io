@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { MessageCircle, X, Send, Bot, User, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ReactMarkdown from "react-markdown";
+import { getGreetingResponse } from "@/lib/chatGreeting";
 
 type Message = {
   role: "user" | "assistant";
@@ -100,6 +101,13 @@ const ChatBot = () => {
     const userMsg: Message = { role: "user", content: input.trim() };
     setMessages((prev) => [...prev, userMsg]);
     setInput("");
+
+    const greetingReply = getGreetingResponse(userMsg.content);
+    if (greetingReply) {
+      setMessages((prev) => [...prev, { role: "assistant", content: greetingReply }]);
+      return;
+    }
+
     setIsLoading(true);
 
     try {
