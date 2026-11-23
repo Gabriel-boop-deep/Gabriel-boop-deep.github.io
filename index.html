@@ -1,32 +1,452 @@
 <!doctype html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="robots" content="index, follow" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-    <title>Gabriel Nunes | Portfólio Web, IA e Dados</title>
-    
-    <script type="text/javascript">
-      var redirect = sessionStorage.redirect;
-      if (redirect && redirect !== window.location.pathname) {
-        delete sessionStorage.redirect;
-        window.history.replaceState(null, null, redirect);
-      }
-    </script>
-    <meta name="description" content="Portfólio profissional de Gabriel Nunes, desenvolvedor full-stack com foco em desenvolvimento web, IA aplicada, RAG local e engenharia de dados.">
-    <meta property="og:title" content="Gabriel Nunes | Portfólio Web, IA e Dados">
-    <meta property="og:description" content="Projetos e soluções em React, TypeScript, IA aplicada, RAG local, Python, SQL, dbt e engenharia de dados.">
-    <meta property="og:image" content="/og-image.png">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.portfoliogabrielnunes.com/">
-    <meta name="twitter:title" content="Gabriel Nunes | Portfólio Web, IA e Dados">
-    <meta name="twitter:description" content="Portfólio profissional em desenvolvimento web, IA aplicada e engenharia de dados.">
-    <meta name="twitter:image" content="/og-image.png">
-    <meta name="twitter:card" content="summary_large_image">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gabriel Nunes · Dados e Automação</title>
+<meta name="description" content="Gabriel Nunes, dados e automação em Salvador. Sistemas em Python e SQL (SAP HANA) em produção no setor elétrico, pipelines com dbt, BigQuery e Snowflake e dashboards em Power BI.">
+<link rel="canonical" href="https://www.portfoliogabrielnunes.com/">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Gabriel Nunes · Dados e Automação">
+<meta property="og:description" content="15 → 2 minutos por análise. R$ 1,19 mi recuperados. D+2 → D+0. Python, SQL, dbt e Power BI.">
+<meta property="og:image" content="https://www.portfoliogabrielnunes.com/assets/foto.jpg">
+<meta property="og:url" content="https://www.portfoliogabrielnunes.com/">
+<meta name="theme-color" content="#0a0b0d">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Person","name":"Gabriel Nunes Barbosa Nogueira","jobTitle":"Dados e Automação","address":{"@type":"PostalAddress","addressLocality":"Salvador","addressRegion":"BA","addressCountry":"BR"},"url":"https://www.portfoliogabrielnunes.com/","sameAs":["https://www.linkedin.com/in/gabriel-nunes-barbosa-nogueira/","https://github.com/mindoramapp"]}
+</script>
+<style>
+:root{
+  --bg:#0a0b0d; --bg2:#101216; --line:#1d2026; --line2:#2a2e36;
+  --txt:#eef0f3; --mut:#8d939e; --dim:#5b616c;
+  --sig:#c6ff3d; --sig-ink:#0a0b0d; --cy:#5ce1e6; --warn:#ff6b4a;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+  --disp:"Inter Tight","Segoe UI",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--txt);font:17px/1.6 var(--disp);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:64px 64px;mask-image:radial-gradient(ellipse 90% 70% at 50% 0%,#000 30%,transparent 85%);opacity:.55}
+a{color:inherit}
+.w{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:0 28px}
+.mono{font-family:var(--mono)}
+.lbl{font:600 12px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
+.lbl b{color:var(--sig);font-weight:600}
+
+/* nav */
+nav{position:sticky;top:0;z-index:20;background:rgba(10,11,13,.78);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav .w{display:flex;align-items:center;justify-content:space-between;height:60px}
+.logo{font:600 15px var(--mono);text-decoration:none}
+.logo span{color:var(--sig)}
+nav ul{display:flex;gap:28px;list-style:none;margin:0;padding:0}
+nav ul a{font:500 14px var(--mono);color:var(--mut);text-decoration:none}
+nav ul a:hover{color:var(--txt)}
+.cv{font:600 13px var(--mono);background:var(--sig);color:var(--sig-ink);padding:8px 14px;text-decoration:none;border-radius:2px}
+.cv:hover{filter:brightness(1.1)}
+
+/* hero */
+.hero{padding:88px 0 72px;display:grid;grid-template-columns:1.25fr .9fr;gap:56px;align-items:center}
+.status{display:inline-flex;align-items:center;gap:10px;font:500 13px var(--mono);color:var(--mut);border:1px solid var(--line2);padding:7px 12px;border-radius:2px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--sig);box-shadow:0 0 0 0 rgba(198,255,61,.6);animation:pulse 2s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 10px rgba(198,255,61,0)}100%{box-shadow:0 0 0 0 rgba(198,255,61,0)}}
+h1{font:900 clamp(44px,7.4vw,96px)/.98 var(--disp);letter-spacing:-.04em;margin:28px 0 26px}
+h1 em{font-style:normal;color:var(--sig)}
+h1 .strike{color:var(--dim);white-space:nowrap;text-decoration:line-through;text-decoration-color:var(--warn);text-decoration-thickness:.07em}
+.sub{font-size:19px;color:var(--mut);max-width:560px;margin:0 0 34px}
+.sub strong{color:var(--txt);font-weight:600}
+.ctas{display:flex;gap:12px;flex-wrap:wrap}
+.b{font:600 14px var(--mono);padding:14px 20px;text-decoration:none;border:1px solid var(--line2);border-radius:2px;transition:.15s}
+.b:hover{border-color:var(--txt)}
+.b.p{background:var(--txt);color:var(--bg);border-color:var(--txt)}
+.b.p:hover{background:var(--sig);border-color:var(--sig)}
+
+/* painel do hero */
+.panel{background:var(--bg2);border:1px solid var(--line2);border-radius:4px;overflow:hidden;box-shadow:0 30px 80px -20px rgba(0,0,0,.7)}
+.panel .top{display:flex;align-items:center;gap:8px;padding:11px 14px;border-bottom:1px solid var(--line)}
+.panel .top i{width:10px;height:10px;border-radius:50%;background:var(--line2)}
+.panel .top span{margin-left:8px;font:500 12px var(--mono);color:var(--dim)}
+.who{display:flex;gap:16px;align-items:center;padding:18px;border-bottom:1px solid var(--line)}
+.who img{width:64px;height:64px;border-radius:2px;object-fit:cover;filter:grayscale(.15) contrast(1.05)}
+.who b{display:block;font-size:17px}
+.who small{font:12px var(--mono);color:var(--mut)}
+.log{font:13px/1.9 var(--mono);padding:14px 18px;min-height:212px;color:var(--mut)}
+.log div{opacity:0;transform:translateY(4px);transition:.35s}
+.log div.on{opacity:1;transform:none}
+.log .ok{color:var(--sig)}
+.log .c{color:var(--cy)}
+.log .big{color:var(--txt);font-weight:600}
+.cursor{display:inline-block;width:8px;height:15px;background:var(--sig);vertical-align:-2px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+
+/* faixa de stack */
+.marq{border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;position:relative;z-index:1;background:var(--bg)}
+.marq .tr{display:flex;gap:44px;width:max-content;padding:16px 0;animation:corre 38s linear infinite;font:500 14px var(--mono);color:var(--mut)}
+.marq .tr span::before{content:"◆ ";color:var(--sig);font-size:10px;vertical-align:2px}
+@keyframes corre{to{transform:translateX(-50%)}}
+
+/* seções */
+section{padding:110px 0 30px;position:relative;z-index:1}
+.sh{display:grid;grid-template-columns:220px 1fr;gap:28px;margin-bottom:56px;align-items:end}
+h2{font:800 clamp(34px,4.6vw,58px)/1 var(--disp);letter-spacing:-.035em;margin:0}
+h2 em{font-style:normal;color:var(--sig)}
+
+/* impacto */
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line2);border-left:1px solid var(--line2)}
+.kpi{border-right:1px solid var(--line2);border-bottom:1px solid var(--line2);padding:28px 24px 26px;min-height:210px;display:flex;flex-direction:column}
+.kpi .v{font:800 clamp(34px,3.8vw,52px)/1 var(--disp);letter-spacing:-.04em;margin:18px 0 12px;white-space:nowrap}
+.kpi .v .ar{color:var(--dim);font-weight:500}
+.kpi .v .to{color:var(--sig)}
+.kpi p{margin:auto 0 0;color:var(--mut);font-size:15px;line-height:1.45}
+
+/* cases */
+.case{display:grid;grid-template-columns:1fr 1.05fr;gap:56px;padding:56px 0;border-top:1px solid var(--line)}
+.case:first-of-type{border-top:0;padding-top:0}
+.case h3{font:800 34px/1.05 var(--disp);letter-spacing:-.03em;margin:14px 0 18px}
+.case p{color:var(--mut);margin:0 0 14px}
+.case p strong{color:var(--txt)}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:20px}
+.tags span{font:500 12px var(--mono);color:var(--mut);border:1px solid var(--line2);padding:4px 9px;border-radius:2px}
+.viz{background:var(--bg2);border:1px solid var(--line2);border-radius:4px;padding:26px;align-self:start}
+.viz .lbl{margin-bottom:22px;display:block}
+/* barras antes/depois */
+.bar{margin:0 0 18px}
+.bar .n{display:flex;justify-content:space-between;font:500 13px var(--mono);color:var(--mut);margin-bottom:8px}
+.bar .n b{color:var(--txt)}
+.bar .t{height:34px;background:var(--line);border-radius:2px;overflow:hidden}
+.bar .f{height:100%;width:0;transition:width 1.4s cubic-bezier(.2,.8,.2,1)}
+.bar.antes .f{background:repeating-linear-gradient(135deg,#3a3f48 0 6px,#30343c 6px 12px)}
+.bar.depois .f{background:var(--sig)}
+.viz .foot{display:flex;gap:26px;margin-top:24px;padding-top:20px;border-top:1px solid var(--line)}
+.viz .foot div{font:500 12px var(--mono);color:var(--mut)}
+.viz .foot b{display:block;font:800 26px var(--disp);color:var(--txt);letter-spacing:-.02em}
+/* waffle */
+.waf{display:grid;grid-template-columns:repeat(40,1fr);gap:3px}
+.waf i{aspect-ratio:1;background:var(--line);border-radius:1px;transition:background .25s}
+.waf i.on{background:var(--sig)}
+/* D+2 → D+0 */
+.lat{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:6px}
+.lat div{border:1px solid var(--line2);padding:16px 12px;border-radius:2px;font:500 12px var(--mono);color:var(--mut)}
+.lat b{display:block;font:800 30px var(--disp);color:var(--dim);letter-spacing:-.02em}
+.lat .now{border-color:var(--sig)}
+.lat .now b{color:var(--sig)}
+
+/* experiência */
+.xp{display:grid;grid-template-columns:220px 1fr;gap:28px;padding:30px 0;border-top:1px solid var(--line)}
+.xp:last-child{border-bottom:1px solid var(--line)}
+.xp .when{font:500 13px var(--mono);color:var(--mut)}
+.xp h3{font:700 24px/1.2 var(--disp);margin:0 0 4px;letter-spacing:-.02em}
+.xp h3 span{color:var(--mut);font-weight:500}
+.xp ul{margin:14px 0 0;padding:0;list-style:none;color:var(--mut)}
+.xp li{padding-left:22px;position:relative;margin-bottom:8px}
+.xp li::before{content:"→";position:absolute;left:0;color:var(--sig);font-family:var(--mono)}
+.xp li strong{color:var(--txt)}
+
+/* projetos */
+.proj{display:grid;grid-template-columns:1.2fr 1fr;grid-template-rows:auto auto;gap:18px}
+.pc{background:var(--bg2);border:1px solid var(--line2);border-radius:4px;overflow:hidden;display:flex;flex-direction:column;text-decoration:none;transition:.2s}
+.pc:hover{border-color:var(--sig);transform:translateY(-3px)}
+.pc.big{grid-row:span 2}
+.pc .img{background:#0d0f12;border-bottom:1px solid var(--line2);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.pc.big .img{aspect-ratio:16/10}
+.pc .img img{width:100%;height:100%;object-fit:cover;display:block}
+.pc .tx{padding:22px 24px 24px;display:flex;flex-direction:column;flex:1}
+.pc h3{font:700 22px/1.2 var(--disp);margin:8px 0 8px;letter-spacing:-.02em}
+.pc p{color:var(--mut);margin:0;font-size:15.5px}
+.pc .go{margin-top:auto;padding-top:16px;font:600 13px var(--mono);color:var(--sig)}
+.fun{padding:22px 24px 6px}
+.fun .row{display:flex;align-items:center;gap:12px;margin-bottom:10px;font:500 12px var(--mono);color:var(--mut)}
+.fun .row .t{flex:1;height:22px;background:var(--line);border-radius:2px;overflow:hidden}
+.fun .row .f{height:100%;width:0;transition:width 1.4s cubic-bezier(.2,.8,.2,1)}
+.fun .row b{min-width:92px;text-align:right;color:var(--txt)}
+
+/* stack */
+.stk{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line2);border-left:1px solid var(--line2)}
+.stk div{border-right:1px solid var(--line2);border-bottom:1px solid var(--line2);padding:24px}
+.stk h4{margin:0 0 12px;font:600 12px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--sig)}
+.stk p{margin:0;color:var(--txt);font-size:15.5px;line-height:1.8}
+
+/* formação */
+.edu{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.edu div{border-top:2px solid var(--line2);padding-top:16px}
+.edu b{display:block;font-size:18px;line-height:1.3;margin:8px 0 6px}
+.edu span{color:var(--mut);font-size:15px}
+.extra{margin-top:30px;color:var(--mut);font-size:15px}
+.extra b{color:var(--txt);font-weight:600}
+
+/* contato */
+.ct{padding:130px 0 120px;text-align:left}
+.ct h2{font-size:clamp(44px,7.4vw,104px);line-height:1.02;letter-spacing:-.04em;margin:26px 0 40px}
+.ct .mail{font:600 clamp(18px,2.4vw,26px) var(--mono);color:var(--sig);text-decoration:none;border-bottom:2px solid var(--sig);padding-bottom:4px}
+.ct .ctas{margin-top:40px}
+footer{border-top:1px solid var(--line);padding:26px 0 40px;position:relative;z-index:1}
+footer .w{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font:12px var(--mono);color:var(--dim)}
+
+/* revelar ao rolar */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .7s,transform .7s cubic-bezier(.2,.8,.2,1)}
+.rv.in{opacity:1;transform:none}
+
+@media (max-width:980px){
+  .hero{grid-template-columns:1fr;padding-top:44px}
+  .kpis{grid-template-columns:repeat(2,1fr)}
+  .case{grid-template-columns:1fr;gap:30px}
+  .sh,.xp{grid-template-columns:1fr;gap:10px}
+  .proj{grid-template-columns:1fr}
+  .pc.big{grid-row:auto}
+  .stk{grid-template-columns:repeat(2,1fr)}
+  .edu{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  .w{padding:0 18px}
+  .hero{padding-top:36px;gap:40px}
+  nav ul{display:none}
+  .kpis,.stk{grid-template-columns:1fr}
+  .kpi{min-height:0}
+  .waf{grid-template-columns:repeat(30,1fr)}
+  section{padding-top:80px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .rv{opacity:1;transform:none}
+  .log div{opacity:1;transform:none}
+}
+</style>
 </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<body>
+
+<nav><div class="w">
+  <a class="logo" href="#topo">gabriel<span>.</span>nunes</a>
+  <ul><li><a href="#impacto">impacto</a></li><li><a href="#cases">cases</a></li><li><a href="#experiencia">experiência</a></li><li><a href="#projetos">projetos</a></li><li><a href="#contato">contato</a></li></ul>
+  <a class="cv" href="/assets/Gabriel_Nunes_Curriculo.pdf" download>CV ↓</a>
+</div></nav>
+
+<header id="topo"><div class="w hero">
+  <div class="rv in">
+    <span class="status"><span class="dot"></span>disponível · vaga júnior · remoto ou Salvador</span>
+    <h1>Dados que <span class="strike">só enfeitam</span> <em>resolvem.</em></h1>
+    <p class="sub">Sou <strong>Gabriel Nunes</strong>. Construo pipelines, painéis e automações em <strong>Python, SQL, dbt e Power BI</strong> que rodam em produção no setor elétrico e devolvem horas, dinheiro e confiança nos números.</p>
+    <div class="ctas">
+      <a class="b p" href="#cases">ver os cases →</a>
+      <a class="b" href="/assets/Gabriel_Nunes_Curriculo.pdf" download>baixar CV (PDF)</a>
+      <a class="b" href="https://www.linkedin.com/in/gabriel-nunes-barbosa-nogueira/" rel="noopener">LinkedIn</a>
+      <a class="b" href="https://github.com/mindoramapp" rel="noopener">GitHub</a>
+    </div>
+  </div>
+  <div class="panel rv in" aria-label="Resumo em formato de terminal">
+    <div class="top"><i></i><i></i><i></i><span>~/gabriel — pipeline.log</span></div>
+    <div class="who"><img src="/assets/foto.jpg" width="64" height="64" alt="Foto de Gabriel Nunes"><div><b>Gabriel Nunes</b><small>dados &amp; automação · Salvador, BA</small></div></div>
+    <div class="log" id="log">
+      <div><span class="c">$</span> extract <span class="big">sap_hana.notas</span></div>
+      <div><span class="ok">✓</span> 1.969 análises em 90 dias <span class="ok">(+27%)</span></div>
+      <div><span class="c">$</span> transform <span class="big">dbt run --select marts</span></div>
+      <div><span class="ok">✓</span> latência D+2 → <span class="ok">D+0</span></div>
+      <div><span class="c">$</span> load <span class="big">power_bi.fatura_final</span></div>
+      <div><span class="ok">✓</span> R$ 1,19 mi recuperados · 1.187 faturas</div>
+      <div><span class="c">$</span> impacto --resumo</div>
+      <div class="big">tempo por análise: 15 min → <span class="ok">2 min</span> <span class="cursor"></span></div>
+    </div>
+  </div>
+</div></header>
+
+<div class="marq" aria-hidden="true"><div class="tr">
+  <span>Python</span><span>SQL</span><span>SAP HANA</span><span>dbt</span><span>BigQuery</span><span>Snowflake</span><span>Databricks</span><span>Power BI · DAX</span><span>Airflow</span><span>Spark</span><span>Oracle</span><span>PostgreSQL</span><span>Streamlit</span><span>Docker</span><span>SAP CCS</span><span>LLMs locais</span>
+  <span>Python</span><span>SQL</span><span>SAP HANA</span><span>dbt</span><span>BigQuery</span><span>Snowflake</span><span>Databricks</span><span>Power BI · DAX</span><span>Airflow</span><span>Spark</span><span>Oracle</span><span>PostgreSQL</span><span>Streamlit</span><span>Docker</span><span>SAP CCS</span><span>LLMs locais</span>
+</div></div>
+
+<section id="impacto"><div class="w">
+  <div class="sh rv"><span class="lbl"><b>01</b> / impacto</span><h2>Números de produção, <em>não de tutorial.</em></h2></div>
+  <div class="kpis rv">
+    <div class="kpi"><span class="lbl">tempo por análise</span><div class="v">15<span class="ar">→</span><span class="to">2</span> min</div><p>Monitor de Notas em produção na Neoenergia Coelba. −87% por nota.</p></div>
+    <div class="kpi"><span class="lbl">recuperado</span><div class="v"><span class="to">R$ <span data-n="1.19" data-dec="2">1,19</span> mi</span></div><p>Em 1.187 faturas acompanhadas pelo painel Fatura Final.</p></div>
+    <div class="kpi"><span class="lbl">latência dos dados</span><div class="v">D+2<span class="ar">→</span><span class="to">D+0</span></div><p>Pipelines ELT com dbt, BigQuery e Snowflake na Indicium.</p></div>
+    <div class="kpi"><span class="lbl">horas poupadas</span><div class="v"><span class="to">~<span data-n="420">420</span> h</span></div><p>Em 90 dias de análises de notas internas e judiciais.</p></div>
+  </div>
+</div></section>
+
+<section id="cases"><div class="w">
+  <div class="sh rv"><span class="lbl"><b>02</b> / cases</span><h2>Problema, solução, <em>resultado.</em></h2></div>
+
+  <article class="case rv">
+    <div>
+      <span class="lbl">neoenergia coelba · recuperação de crédito</span>
+      <h3>Monitor de Notas</h3>
+      <p><strong>Problema:</strong> cada nota interna ou judicial levava cerca de 15 minutos de análise manual, e a fila acumulava.</p>
+      <p><strong>O que construí:</strong> um sistema em Python e Streamlit ligado direto ao SAP HANA, que reúne tudo o que a análise precisa numa tela só.</p>
+      <p><strong>Resultado:</strong> 2 minutos por nota, 1.969 análises em 90 dias (+27%), cerca de 420 horas poupadas e fila zerada.</p>
+      <div class="tags"><span>Python</span><span>Streamlit</span><span>SAP HANA</span><span>SQL</span></div>
+    </div>
+    <div class="viz" data-viz="barras">
+      <span class="lbl">minutos por nota</span>
+      <div class="bar antes"><div class="n"><span>antes · consulta manual</span><b>15 min</b></div><div class="t"><div class="f" data-w="100"></div></div></div>
+      <div class="bar depois"><div class="n"><span>depois · Monitor de Notas</span><b>2 min</b></div><div class="t"><div class="f" data-w="13.3"></div></div></div>
+      <div class="foot"><div><b>−87%</b>por nota</div><div><b>+27%</b>análises</div><div><b>0</b>fila</div></div>
+    </div>
+  </article>
+
+  <article class="case rv">
+    <div>
+      <span class="lbl">neoenergia coelba · cobrança</span>
+      <h3>Fatura Final</h3>
+      <p><strong>Problema:</strong> uma carteira de mais de 120 mil faturas precisava de acompanhamento de cobrança, fatura a fatura.</p>
+      <p><strong>O que construí:</strong> o painel de cobrança Fatura Final e a reestruturação do reaviso de débito por e-mail.</p>
+      <p><strong>Resultado:</strong> <strong>R$ 1,19 milhão recuperados em 1.187 faturas.</strong> Cada quadrado ao lado é uma delas.</p>
+      <div class="tags"><span>Power BI</span><span>SQL</span><span>SAP CCS</span><span>Python</span></div>
+    </div>
+    <div class="viz" data-viz="waffle">
+      <span class="lbl">1.187 faturas recuperadas</span>
+      <div class="waf" id="waf"></div>
+      <div class="foot"><div><b>R$ 1,19 mi</b>recuperados</div><div><b>120 mil+</b>faturas na carteira</div></div>
+    </div>
+  </article>
+
+  <article class="case rv">
+    <div>
+      <span class="lbl">indicium · analytics engineering</span>
+      <h3>Dados do dia, no mesmo dia</h3>
+      <p><strong>Problema:</strong> os dados analíticos chegavam com dois dias de atraso, e boa parte dos relatórios ainda era montada à mão.</p>
+      <p><strong>O que construímos (em equipe):</strong> pipelines ELT com dbt, BigQuery e Snowflake, camadas staging, intermediate e mart padronizadas e dashboards executivos em Power BI e Looker.</p>
+      <p><strong>Resultado:</strong> latência de D+2 para D+0, mais de 90% de cobertura de testes nos modelos críticos e cerca de 8 horas semanais de relatório manual eliminadas.</p>
+      <div class="tags"><span>dbt</span><span>BigQuery</span><span>Snowflake</span><span>Databricks</span><span>Looker</span></div>
+    </div>
+    <div class="viz">
+      <span class="lbl">quando o dado fica pronto</span>
+      <div class="lat"><div>antes<b>D+2</b>dois dias de atraso</div><div class="now">depois<b>D+0</b>no mesmo dia</div></div>
+      <div class="foot"><div><b>90%+</b>testes</div><div><b>5 mi+</b>registros/execução</div><div><b>−8 h</b>por semana</div></div>
+    </div>
+  </article>
+</div></section>
+
+<section id="experiencia"><div class="w">
+  <div class="sh rv"><span class="lbl"><b>03</b> / experiência</span><h2>Onde isso <em>aconteceu.</em></h2></div>
+  <div class="xp rv">
+    <div class="when">jul/2025 — atual<br>Salvador, BA</div>
+    <div><h3>Neoenergia Coelba <span>· Estagiário de Dados e Automação</span></h3>
+      <ul>
+        <li><strong>Monitor de Notas</strong> e <strong>Fatura Final</strong>, os dois cases acima.</li>
+        <li>Automação em Python do tratamento de notas internas e reguladas: cerca de 60% menos tempo por ciclo.</li>
+        <li>Bases de crédito reestruturadas: consistência dos registros de ~70% para mais de 95%.</li>
+        <li>IA local (LLM offline) que gera consultas SQL completas a partir da estrutura das bases.</li>
+        <li>Cocriador do <strong>NeoView</strong>, busca centralizada apresentada no programa de inovação Inovamos e hoje em uso.</li>
+      </ul></div>
+  </div>
+  <div class="xp rv">
+    <div class="when">out/2023 — set/2024<br>Remoto</div>
+    <div><h3>Indicium <span>· Estagiário de Analytics Engineering</span></h3>
+      <ul>
+        <li>Pipelines ELT em equipe com dbt, BigQuery e Snowflake: <strong>D+2 → D+0</strong>.</li>
+        <li>Dashboards executivos em Power BI e Looker para acompanhar KPIs.</li>
+        <li>Integrações REST/JSON no Databricks com mais de 5 milhões de registros por execução.</li>
+      </ul></div>
+  </div>
+</div></section>
+
+<section id="projetos"><div class="w">
+  <div class="sh rv"><span class="lbl"><b>04</b> / projetos</span><h2>Código aberto para <em>você conferir.</em></h2></div>
+  <div class="proj">
+    <a class="pc big rv" href="https://github.com/mindoramapp/quadro-branco-colaborativo" rel="noopener">
+      <div class="img"><img src="https://raw.githubusercontent.com/mindoramapp/quadro-branco-colaborativo/main/docs/demo-3-usuarios.gif" alt="Três pessoas editando o mesmo quadro ao mesmo tempo" loading="lazy"></div>
+      <div class="tx"><span class="lbl">react · yjs · webrtc · docker</span><h3>Quadro branco colaborativo em tempo real</h3>
+        <p>Várias pessoas desenham juntas, com cursores ao vivo. Funciona sem internet e se reconcilia sozinho quando a conexão volta (CRDT). Histórico de versões em SQLite e testes E2E com vários navegadores.</p>
+        <span class="go">ver código →</span></div>
+    </a>
+    <a class="pc rv" href="https://github.com/mindoramapp/cnpj-aberto-etl" rel="noopener">
+      <div class="fun" data-viz="funil">
+        <div class="row"><span>lidas</span><div class="t"><div class="f" data-w="100" style="background:#3a3f48"></div></div><b>73.809.386</b></div>
+        <div class="row"><span>guardadas</span><div class="t"><div class="f" data-w="0.45" style="background:var(--sig);min-width:4px"></div></div><b>329.729</b></div>
+      </div>
+      <div class="tx"><span class="lbl">python · sqlite · ci</span><h3>ETL dos dados abertos do CNPJ</h3>
+        <p>73,8 milhões de linhas da Receita processadas em fluxo num notebook de 8 GB de RAM. Só 0,45% sobrevive ao filtro.</p>
+        <span class="go">ver código →</span></div>
+    </a>
+    <a class="pc rv" href="https://github.com/mindoramapp/saas-assinatura" rel="noopener">
+      <div class="tx"><span class="lbl">next.js · typescript · prisma · stripe</span><h3>Orçaí: SaaS de orçamentos com assinatura</h3>
+        <p>Multi-organização com papéis verificados no servidor, cobrança recorrente por webhooks idempotentes e painel de métricas de negócio: MRR, churn, DAU/MAU e ativação. 49 testes e CI.</p>
+        <span class="go">ver código →</span></div>
+    </a>
+  </div>
+</div></section>
+
+<section id="stack"><div class="w">
+  <div class="sh rv"><span class="lbl"><b>05</b> / stack</span><h2>Ferramentas <em>do dia a dia.</em></h2></div>
+  <div class="stk rv">
+    <div><h4>linguagens</h4><p>Python · Pandas · PySpark · FastAPI<br>SQL · VBA · JavaScript</p></div>
+    <div><h4>bancos</h4><p>SAP HANA · Oracle<br>PostgreSQL · BigQuery<br>Snowflake · Databricks · GCP</p></div>
+    <div><h4>engenharia</h4><p>dbt · Airflow · Spark · Docker<br>ETL/ELT · modelagem dimensional<br>testes e qualidade de dados</p></div>
+    <div><h4>bi &amp; sap</h4><p>Power BI · DAX · Power Query<br>Looker · Excel avançado<br>SAP CCS + Python/BI</p></div>
+  </div>
+</div></section>
+
+<section id="formacao"><div class="w">
+  <div class="sh rv"><span class="lbl"><b>06</b> / formação</span><h2>Base <em>técnica.</em></h2></div>
+  <div class="edu rv">
+    <div><span class="lbl">2025–2026 · concluído</span><b>Tecnólogo em Análise e Desenvolvimento de Sistemas</b><span>UNIFATECIE</span></div>
+    <div><span class="lbl">2024–2025 · concluído</span><b>Técnico em Desenvolvimento de Sistemas</b><span>IFSULDEMINAS</span></div>
+    <div><span class="lbl">2019 – atual</span><b>Engenharia Elétrica, UFBA</b><span>Mudança de curso para Ciências Contábeis prevista. Iniciação científica (2022–2023) com redes neurais para imagens.</span></div>
+  </div>
+  <p class="extra rv"><b>Certificações:</b> Analytics Engineering (Indicium/dbt) · Google Cloud Data Analytics · Formação em Ciência de Dados (Alura). <b>Idiomas:</b> português nativo, inglês avançado, espanhol intermediário.</p>
+</div></section>
+
+<section class="ct" id="contato"><div class="w">
+  <span class="lbl rv"><b>07</b> / contato</span>
+  <h2 class="rv">Tem um processo<br>manual demais? <em>Fala comigo.</em></h2>
+  <a class="mail rv" href="mailto:gabrielnbn@hotmail.com">gabrielnbn@hotmail.com</a>
+  <div class="ctas rv">
+    <a class="b p" href="/assets/Gabriel_Nunes_Curriculo.pdf" download>baixar CV (PDF)</a>
+    <a class="b" href="https://www.linkedin.com/in/gabriel-nunes-barbosa-nogueira/" rel="noopener">LinkedIn</a>
+    <a class="b" href="https://wa.me/5571999428340" rel="noopener">WhatsApp</a>
+    <a class="b" href="https://github.com/mindoramapp" rel="noopener">GitHub</a>
+  </div>
+</div></section>
+
+<footer><div class="w"><span>© 2026 Gabriel Nunes Barbosa Nogueira · Salvador, BA</span><span>feito à mão · HTML, CSS e um pouco de JavaScript</span></div></footer>
+
+<script>
+(function(){
+  var reduz = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // terminal do hero
+  var linhas = document.querySelectorAll('#log div');
+  linhas.forEach(function(l,i){ setTimeout(function(){ l.classList.add('on'); }, reduz ? 0 : 500 + i*380); });
+  // waffle: 1.187 quadrados
+  var waf = document.getElementById('waf'), frag = document.createDocumentFragment();
+  for (var i=0;i<1187;i++){ frag.appendChild(document.createElement('i')); }
+  waf.appendChild(frag);
+  function acendeWaffle(){
+    var q = waf.children, n = 0, passo = 40;
+    (function lote(){ for (var k=0;k<passo && n<q.length;k++,n++) q[n].classList.add('on'); if (n<q.length) requestAnimationFrame(lote); })();
+  }
+  // contadores
+  function conta(el){
+    var alvo = parseFloat(el.dataset.n), dec = +(el.dataset.dec||0), t0 = null, dur = 1300;
+    function f(t){ if(!t0) t0=t; var p=Math.min((t-t0)/dur,1), e=1-Math.pow(1-p,3);
+      el.textContent = (alvo*e).toLocaleString('pt-BR',{minimumFractionDigits:dec,maximumFractionDigits:dec});
+      if(p<1) requestAnimationFrame(f); }
+    requestAnimationFrame(f);
+  }
+  function enche(box){ box.querySelectorAll('.f[data-w]').forEach(function(f){ f.style.width = f.dataset.w + '%'; }); }
+  if (reduz || !('IntersectionObserver' in window)) {
+    document.querySelectorAll('.rv').forEach(function(e){ e.classList.add('in'); });
+    document.querySelectorAll('[data-viz]').forEach(enche);
+    Array.prototype.forEach.call(waf.children, function(q){ q.classList.add('on'); });
+    return;
+  }
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if (!e.isIntersecting) return;
+      var el = e.target; io.unobserve(el);
+      el.classList.add('in');
+      el.querySelectorAll('[data-n]').forEach(conta);
+      el.querySelectorAll('[data-viz]').forEach(function(v){ enche(v); });
+      if (el.dataset && el.dataset.viz) enche(el);
+      if (el.querySelector('#waf')) acendeWaffle();
+    });
+  }, {threshold:.18});
+  document.querySelectorAll('.rv').forEach(function(e){ io.observe(e); });
+})();
+</script>
+</body>
 </html>
